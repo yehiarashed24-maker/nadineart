@@ -1719,7 +1719,9 @@ body[dir="rtl"] .site-footer {
 
 .footer-links {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .footer-links a {
@@ -1842,6 +1844,10 @@ body[dir="rtl"] .site-footer {
   .header-right .lang-toggle-btn {
     padding: 0.28rem 0.6rem !important;
     font-size: 0.74rem !important;
+  }
+
+  .footer-links {
+    gap: 0.85rem 1.25rem;
   }
 }
 

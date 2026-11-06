@@ -60,31 +60,32 @@
     // Render dynamic items into grid
     galleryGrid.innerHTML = '';
     data.forEach((art, idx) => {
-      const a = document.createElement('a');
-      a.href = art.link || '#';
-      a.className = 'gallery-item';
-      a.setAttribute('data-category', (art.category || 'watercolor').toLowerCase());
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.setAttribute('data-category', (art.category || 'watercolor').toLowerCase());
       if (art.ambientColor) {
-        a.setAttribute('data-ambient-color', art.ambientColor);
-      }
-      if (art.link && art.link !== '#') {
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
+        item.setAttribute('data-ambient-color', art.ambientColor);
       }
 
-      const catKey = `cat_${(art.category || 'watercolor').toLowerCase()}`;
+      const artIdParam = encodeURIComponent(art.id || `art-${idx + 1}`);
       const imgSrc = art.image || art.fallbackImage || 'assets/images/logo-badge.jpg';
       const fallbackAttr = art.fallbackImage ? `onerror="this.onerror=null;this.src='${art.fallbackImage}'"` : '';
 
-      a.innerHTML = `
-        <img src="${imgSrc}" ${fallbackAttr} alt="${escapeHtml(art.title || 'Artwork')}" class="gallery-item-img" ${idx === 0 ? 'loading="eager"' : 'loading="lazy"'}>
+      item.innerHTML = `
+        <a href="visualizer.html?art=${artIdParam}" class="gallery-img-link" title="View on Wall">
+          <img src="${imgSrc}" ${fallbackAttr} alt="${escapeHtml(art.title || 'Artwork')}" class="gallery-item-img" ${idx === 0 ? 'loading="eager"' : 'loading="lazy"'}>
+          <span class="view-wall-overlay-btn">
+            <i class="fa-solid fa-expand"></i>
+            <span data-i18n="view_on_wall">View on Wall</span>
+          </span>
+        </a>
         ${(art.title || art.artist || art.price) ? `<div class="gallery-item-info">
           ${art.title ? `<h3 class="gallery-item-title">${escapeHtml(art.title)}</h3>` : ''}
           ${art.artist ? `<span class="gallery-item-artist">${escapeHtml(art.artist)}</span>` : ''}
           ${art.price ? `<span class="gallery-item-price">${escapeHtml(art.price)}</span>` : ''}
         </div>` : ''}
       `;
-      galleryGrid.appendChild(a);
+      galleryGrid.appendChild(item);
     });
 
     // Translate dynamic category tags if i18n engine is active

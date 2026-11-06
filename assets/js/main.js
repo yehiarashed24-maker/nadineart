@@ -468,6 +468,10 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="dock-icon-box"><i class="fa-solid fa-palette"></i></div>
         <span class="dock-label" data-i18n="nav_gallery">Gallery</span>
       </a>
+      <a href="visualizer.html" class="dock-item" data-page="visualizer">
+        <div class="dock-icon-box"><i class="fa-solid fa-expand"></i></div>
+        <span class="dock-label" data-i18n="nav_visualizer">Wall Preview</span>
+      </a>
       <a href="about.html" class="dock-item" data-page="about">
         <div class="dock-icon-box"><i class="fa-solid fa-feather-pointed"></i></div>
         <span class="dock-label" data-i18n="nav_about">About</span>
@@ -486,9 +490,10 @@ document.addEventListener('DOMContentLoaded', function () {
     items.forEach(item => {
       const page = item.getAttribute('data-page');
       const isMatch = (page === 'gallery' && path.includes('gallery')) ||
+                      (page === 'visualizer' && (path.includes('visualizer') || path.includes('wall'))) ||
                       (page === 'about' && path.includes('about')) ||
                       (page === 'contact' && path.includes('contact')) ||
-                      (page === 'home' && (!path.includes('gallery') && !path.includes('about') && !path.includes('contact') && !path.includes('admin')));
+                      (page === 'home' && (!path.includes('gallery') && !path.includes('visualizer') && !path.includes('wall') && !path.includes('about') && !path.includes('contact') && !path.includes('admin')));
       if (isMatch && !activeFound) {
         item.classList.add('active');
         activeFound = true;

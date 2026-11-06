@@ -1,0 +1,613 @@
+/* ==========================================================================
+   NADINE BAGHDADY - INTERACTIVE ROOM VISUALIZER (SEE IT IN YOUR SPACE)
+   Spatial Placement & Wall Preview Tool
+   ========================================================================== */
+
+.visualizer-page-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vh, 4rem) 1.5rem clamp(5rem, 8vh, 6.5rem) 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.visualizer-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.visualizer-eyebrow-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.visualizer-eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: var(--terracotta, #b8693f);
+}
+
+.visualizer-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b8693f);
+}
+
+.visualizer-title {
+  font-family: var(--serif, 'Alex Brush', serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400;
+  color: var(--ink, #2b2420);
+  line-height: 1.1;
+  margin: 0;
+}
+
+body[dir="rtl"] .visualizer-title {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.visualizer-desc {
+  font-size: 0.95rem;
+  color: var(--ink-soft, #6f6760);
+  margin-top: 0.6rem;
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+.visualizer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 99px;
+  background: var(--ink, #2b2420);
+  color: #faf6ef !important;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(44, 36, 22, 0.15);
+}
+
+.visualizer-cta-btn:hover {
+  background: var(--terracotta, #b8693f);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184, 105, 63, 0.3);
+}
+
+/* Two-Column Layout */
+.visualizer-grid {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Wall Stage Preview */
+.wall-stage-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.wall-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #1b1917;
+  border: 1px solid rgba(44, 36, 22, 0.1);
+  box-shadow: 0 25px 60px -20px rgba(44, 36, 22, 0.35);
+  user-select: none;
+  touch-action: none;
+}
+
+.wall-room-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.wall-ambient-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+.wall-room-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+  background: rgba(20, 18, 16, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+body[dir="rtl"] .wall-room-badge {
+  right: auto;
+  left: 1rem;
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* Suspended Draggable Artwork Frame */
+.wall-artwork-frame {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  z-index: 5;
+  transition: box-shadow 0.2s ease;
+}
+
+.wall-artwork-frame.is-dragging {
+  cursor: grabbing;
+  z-index: 20;
+}
+
+.wall-artwork-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.wall-artwork-inner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.wall-artwork-glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 45%, rgba(0, 0, 0, 0.2) 100%);
+  pointer-events: none;
+}
+
+.wall-artwork-plaque {
+  margin-top: 0.5rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.wall-artwork-plaque span {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #faf6ef;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+/* Frame Styles */
+.frame-style-canvas {
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.45);
+}
+
+.frame-style-oak {
+  border: clamp(8px, 1.4vw, 16px) solid #8C6747;
+  box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.55), inset 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.frame-style-charcoal {
+  border: clamp(8px, 1.4vw, 16px) solid #1C1A18;
+  box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.6), inset 0 0 4px rgba(255, 255, 255, 0.05);
+}
+
+.frame-style-gold {
+  border: clamp(8px, 1.4vw, 16px) solid #D4AF37;
+  box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.55), inset 0 0 5px rgba(0, 0, 0, 0.35);
+}
+
+/* Sliders Bar */
+.wall-sliders-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(44, 36, 22, 0.08);
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink, #2b2420);
+}
+
+.slider-label-row span:first-child {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft, #6f6760);
+  font-size: 0.68rem;
+}
+
+.wall-slider-input {
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(44, 36, 22, 0.12);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  accent-color: var(--terracotta, #b8693f);
+}
+
+.wall-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--terracotta, #b8693f);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+}
+
+.wall-reset-btn {
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink, #2b2420);
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.wall-reset-btn:hover {
+  background: var(--terracotta, #b8693f);
+  color: #ffffff;
+  border-color: var(--terracotta, #b8693f);
+}
+
+/* Control Panel */
+.visualizer-control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.control-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(44, 36, 22, 0.08);
+}
+
+.control-card-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b8693f);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Artwork Picker Grid */
+.artwork-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.artwork-thumb-btn {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 2px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.artwork-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+  background: #f0ebe1;
+}
+
+.artwork-thumb-btn:hover {
+  transform: scale(1.04);
+}
+
+.artwork-thumb-btn.active {
+  border-color: var(--terracotta, #b8693f);
+  box-shadow: 0 0 0 3px rgba(184, 105, 63, 0.25);
+  transform: scale(1.04);
+}
+
+/* Upload Custom Artwork / Room Button */
+.upload-dashed-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1.5px dashed rgba(184, 105, 63, 0.45);
+  background: rgba(184, 105, 63, 0.05);
+  color: var(--terracotta, #b8693f);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-sizing: border-box;
+}
+
+.upload-dashed-btn:hover {
+  border-color: var(--terracotta, #b8693f);
+  background: rgba(184, 105, 63, 0.1);
+}
+
+/* Frame Selector Grid */
+.frame-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.frame-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(44, 36, 22, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink, #2b2420);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: start;
+}
+
+.frame-swatch-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.frame-option-btn:hover {
+  border-color: var(--terracotta, #b8693f);
+}
+
+.frame-option-btn.active {
+  border-color: var(--terracotta, #b8693f);
+  background: rgba(184, 105, 63, 0.08);
+  color: var(--terracotta, #b8693f);
+  box-shadow: 0 0 0 2px rgba(184, 105, 63, 0.2);
+}
+
+/* Room Selector List */
+.room-selector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.room-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(44, 36, 22, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink, #2b2420);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.room-option-btn .check-icon {
+  opacity: 0;
+  color: var(--terracotta, #b8693f);
+  transition: opacity 0.2s ease;
+}
+
+.room-option-btn.active {
+  border-color: var(--terracotta, #b8693f);
+  background: rgba(184, 105, 63, 0.08);
+  color: var(--terracotta, #b8693f);
+}
+
+.room-option-btn.active .check-icon {
+  opacity: 1;
+}
+
+/* Gallery "View on Wall" Button on Paintings */
+.gallery-item .view-wall-overlay-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 99px;
+  background: rgba(20, 18, 16, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #faf6ef;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s ease;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-item:hover .view-wall-overlay-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 960px) {
+  .visualizer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .wall-stage {
+    aspect-ratio: 16 / 11;
+  }
+
+  .wall-sliders-bar {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .wall-reset-btn {
+    grid-column: span 2;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .visualizer-page-container {
+    padding: 1.25rem 1rem calc(80px + env(safe-area-inset-bottom, 0px)) 1rem;
+    overflow-x: hidden;
+  }
+
+  .visualizer-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .visualizer-title {
+    font-size: 2rem;
+  }
+
+  body[dir="rtl"] .visualizer-title {
+    font-size: 1.65rem;
+  }
+
+  .wall-stage {
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+
+  .wall-room-badge {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    max-width: calc(100% - 1.5rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body[dir="rtl"] .wall-room-badge {
+    right: auto;
+    left: 0.75rem;
+  }
+
+  .wall-artwork-frame {
+    max-width: 68%;
+  }
+
+  .wall-sliders-bar {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .wall-reset-btn {
+    grid-column: auto;
+  }
+
+  .artwork-picker-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .frame-selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item .view-wall-overlay-btn {
+    opacity: 0.95;
+    transform: none;
+    top: 0.65rem;
+    right: 0.65rem;
+    font-size: 0.68rem;
+    padding: 0.35rem 0.75rem;
+  }
+}

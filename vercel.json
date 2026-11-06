@@ -3,6 +3,8 @@
   "rewrites": [
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/gallery", "destination": "/gallery.html" },
+    { "source": "/visualizer", "destination": "/visualizer.html" },
+    { "source": "/wall", "destination": "/visualizer.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" }
   ]
