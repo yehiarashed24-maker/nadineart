@@ -112,7 +112,7 @@
     function updateWatermark() {
       if (!watermark) return;
       const isAr = document.body.getAttribute('dir') === 'rtl';
-      watermark.textContent = isAr ? 'نادين بغدادي' : 'Nadine Baghdadi';
+      watermark.textContent = isAr ? 'نادين بغدادي' : 'Nadine Baghdady';
     }
     updateWatermark();
 

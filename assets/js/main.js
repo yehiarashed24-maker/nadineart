@@ -175,7 +175,7 @@ function proceedToCheckout() {
     return;
   }
   const total = collectorBag.reduce((acc, item) => acc + (item.price * item.qty), 0);
-  alert(`Thank you for acquiring artwork from Nadine Baghdadi Art Gallery!\n\nInvestment Total: $${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}\n\nOur private concierge will contact you to coordinate insured wooden crate delivery and Certificate of Authenticity registration.`);
+  alert(`Thank you for acquiring artwork from Nadine Baghdady Art Gallery!\n\nInvestment Total: $${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}\n\nOur private concierge will contact you to coordinate insured wooden crate delivery and Certificate of Authenticity registration.`);
   collectorBag = [];
   saveBag();
   closeCart();

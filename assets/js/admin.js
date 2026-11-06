@@ -318,7 +318,7 @@
         </td>
         <td>
           <div class="table-art-title">${escapeHtml(item.title)}</div>
-          <div class="table-art-artist">${escapeHtml(item.artist || 'Nadine Baghdadi')}</div>
+          <div class="table-art-artist">${escapeHtml(item.artist || 'Nadine Baghdady')}</div>
         </td>
         <td class="table-art-price">${escapeHtml(item.price || 'EGP —')}</td>
         <td>
@@ -560,7 +560,7 @@
         id: `art-${Date.now()}`,
         title,
         category,
-        artist: 'Nadine Baghdadi',
+        artist: 'Nadine Baghdady',
         price,
         image,
         fallbackImage: '',

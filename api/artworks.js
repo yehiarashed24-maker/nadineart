@@ -1,5 +1,5 @@
 /**
- * Nadine Baghdadi Atelier - Live Gallery Artworks Serverless API for Vercel
+ * Nadine Baghdady Atelier - Live Gallery Artworks Serverless API for Vercel
  * Supports:
  *  1. MongoDB Atlas (via MONGODB_URI)
  *  2. Vercel KV / Upstash Redis (via KV_REST_API_URL & KV_REST_API_TOKEN)
