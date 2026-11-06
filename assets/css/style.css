@@ -330,7 +330,9 @@ body[dir="rtl"] .header-nav-left {
    PAGE 1: HOME (EXACT MATCH TO 1.svg WITH NADINE BAGHDADI LOGO & TEXT)
    ========================================================================== */
 .home-hero {
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   min-height: 100vh;
   background: url('../images/bg-home.jpg') no-repeat center center;
   background-size: cover;
@@ -508,7 +510,9 @@ body[dir="rtl"] .header-nav-left {
    PAGE 2: CONTACT (EXACT MATCH TO 2.svg WITH NADINE BAGHDADI LOGO & TEXT)
    ========================================================================== */
 .contact-container {
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   min-height: 100vh;
   background: url('../images/bg-contact.jpg') no-repeat center center;
   background-size: cover;
@@ -608,7 +612,9 @@ body[dir="rtl"] .header-nav-left {
    PAGE 3: ABOUT ME (EXACT MATCH TO UNTITLED DESIGN.SVG LAYOUT)
    ========================================================================== */
 .about-container {
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   min-height: 100vh;
   background: url('../images/about-frame.jpg') no-repeat center center;
   background-size: cover;
@@ -1770,12 +1776,7 @@ body[dir="rtl"] .site-footer {
   }
 
   .header-nav-left {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    gap: 1.15rem;
-    padding-top: 0.45rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    display: none !important;
   }
 
   .header-center {
@@ -1789,7 +1790,7 @@ body[dir="rtl"] .site-footer {
   }
 
   .brand-signature {
-    font-size: 2.15rem !important;
+    font-size: 1.35rem !important;
     transform: translateY(1.5px);
   }
 
@@ -2275,17 +2276,7 @@ body[dir="rtl"] .gallery-item-category-tag {
   }
 
   .gallery-page .header-nav-left {
-    order: 3 !important;
-    width: 100% !important;
-    justify-content: center !important;
-    gap: 1.2rem !important;
-    padding-top: 0.25rem !important;
-    margin-top: 0.1rem !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  }
-
-  .gallery-page .header-nav-left a {
-    font-size: 0.82rem !important;
+    display: none !important;
   }
 
   /* 3. Curator Category Dock: Sits Naturally Below Navbar */

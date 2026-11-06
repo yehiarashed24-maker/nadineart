@@ -847,6 +847,499 @@ body[dir="rtl"] .video-eyebrow { letter-spacing: 0; }
 }
 .painting-plaque em { font-style: normal; font-size: 0.68rem; color: var(--ink-soft); }
 
+/* ==========================================================================
+   MOBILE APP EXPERIENCE & COMPREHENSIVE RESPONSIVENESS (ALL SCREEN SIZES)
+   ========================================================================== */
+
+/* Universal Mobile Constraints */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Base state for dock: hidden on desktops */
+.mobile-app-dock {
+  display: none;
+}
+
+.gallery-swipe-pill {
+  display: none;
+}
+
 @media (max-width: 860px) {
-  .home-video-section { padding: 5rem 1.5rem; }
+  /* Prevent content overlap with bottom dock */
+  body {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .site-footer {
+    margin-bottom: 0 !important;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* 1. Sleek Single-Line Native Top App Bar */
+  .site-header {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0.65rem 1rem !important;
+    background: rgba(250, 246, 239, 0.94) !important;
+    backdrop-filter: blur(20px) saturate(1.8) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25) !important;
+    box-shadow: 0 2px 14px rgba(44, 36, 22, 0.05) !important;
+    z-index: 1000 !important;
+  }
+
+  .site-header .header-inner {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide desktop text nav links from top header on mobile - now in bottom tab dock */
+  .site-header .header-nav-left {
+    display: none !important;
+  }
+
+  .site-header .header-center {
+    display: flex !important;
+    align-items: center !important;
+    order: 1 !important;
+    margin: 0 !important;
+  }
+
+  .site-header .header-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    text-decoration: none !important;
+  }
+
+  .site-header .header-brand-logo {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(197, 160, 89, 0.5) !important;
+    object-fit: cover !important;
+  }
+
+  .site-header .brand-signature {
+    font-size: 1.28rem !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    color: var(--ink) !important;
+    line-height: 1 !important;
+  }
+
+  .site-header .header-right {
+    order: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin: 0 !important;
+  }
+
+  .site-header .lang-toggle-btn {
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.76rem !important;
+    min-height: 32px !important;
+    border-radius: 99px !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid rgba(197, 160, 89, 0.35) !important;
+    box-shadow: 0 2px 8px rgba(44, 36, 22, 0.06) !important;
+    white-space: nowrap !important;
+    color: var(--ink) !important;
+  }
+
+  /* 2. Native Mobile App Bottom Navigation Bar */
+  .mobile-app-dock {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: calc(62px + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 6px 8px max(6px, env(safe-area-inset-bottom, 0px)) 8px !important;
+    box-sizing: border-box !important;
+    background: rgba(250, 246, 239, 0.95) !important;
+    backdrop-filter: blur(25px) saturate(1.8) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(1.8) !important;
+    border-top: 1px solid rgba(197, 160, 89, 0.28) !important;
+    box-shadow: 0 -4px 25px rgba(44, 36, 22, 0.08) !important;
+    z-index: 99999 !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .dock-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 !important;
+    height: 100% !important;
+    text-decoration: none !important;
+    color: rgba(43, 36, 32, 0.52) !important;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative !important;
+    border-radius: 12px !important;
+    padding: 3px 0 !important;
+  }
+
+  .dock-item:active {
+    transform: scale(0.92) !important;
+  }
+
+  .dock-icon-box {
+    width: 32px !important;
+    height: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.15rem !important;
+    transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease !important;
+  }
+
+  .dock-label {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    margin-top: 2px !important;
+    line-height: 1.1 !important;
+    transition: color 0.2s ease !important;
+  }
+
+  body[dir="rtl"] .dock-label {
+    font-family: 'Cairo', sans-serif !important;
+    font-size: 0.72rem !important;
+  }
+
+  .dock-item.active {
+    color: var(--terracotta) !important;
+  }
+
+  .dock-item.active .dock-icon-box {
+    transform: translateY(-2px) !important;
+    color: var(--terracotta) !important;
+  }
+
+  .dock-item.active .dock-label {
+    color: var(--ink) !important;
+    font-weight: 700 !important;
+  }
+
+  .dock-item.active::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 1px !important;
+    width: 20px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, var(--gold), var(--terracotta)) !important;
+    border-radius: 99px !important;
+    box-shadow: 0 1px 6px rgba(176, 138, 78, 0.45) !important;
+  }
+
+  /* 3. HOME PAGE MOBILE OPTIMIZATIONS */
+  .home-hero {
+    min-height: calc(100vh - 56px) !important;
+    padding: 2rem 1.25rem calc(75px + env(safe-area-inset-bottom, 0px)) 1.25rem !important;
+    box-sizing: border-box !important;
+    gap: 1.25rem !important;
+  }
+
+  .brand-title {
+    letter-spacing: 0.16em !important;
+    font-size: clamp(0.68rem, 2.5vw, 0.8rem) !important;
+    gap: 0.4rem !important;
+    text-align: center !important;
+  }
+
+  .brand-title span + span::before {
+    width: 20px !important;
+    margin-inline-end: 0.4rem !important;
+  }
+
+  .home-headline {
+    font-size: clamp(2rem, 7.5vw, 2.85rem) !important;
+    line-height: 1.15 !important;
+    padding: 0 0.5rem !important;
+    text-align: center !important;
+  }
+
+  .headline-brushstroke-wrapper {
+    max-width: 260px !important;
+    margin: -0.25rem auto 0 auto !important;
+  }
+
+  .home-cta {
+    padding: 0.9rem 2.2rem !important;
+    font-size: 0.78rem !important;
+    border-radius: 99px !important;
+    box-shadow: 0 8px 24px -4px rgba(44, 36, 22, 0.3) !important;
+    min-height: 48px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .home-video-section {
+    padding: 3rem 1.25rem !important;
+  }
+
+  .video-frame-inner {
+    border-radius: 16px !important;
+    max-width: 100% !important;
+  }
+
+  /* 4. CONTACT PAGE MOBILE FIXES (Eliminating Cutoffs) */
+  .contact-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-height: calc(100vh - 56px) !important;
+    padding: 1.5rem 1.25rem calc(80px + env(safe-area-inset-bottom, 0px)) 1.25rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-layout {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: stretch !important;
+  }
+
+  .contact-left {
+    height: auto !important;
+    gap: 0.85rem !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .contact-brand {
+    justify-content: center !important;
+  }
+
+  .contact-brand a {
+    justify-content: center !important;
+  }
+
+  .contact-brand-title {
+    letter-spacing: 0.22em !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+
+  .contact-headline {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+    line-height: 1.15 !important;
+    margin: 0.25rem 0 0.5rem 0 !important;
+    padding-bottom: 0 !important;
+    text-align: center !important;
+  }
+
+  .contact-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.75rem 1.25rem !important;
+    margin: 0 auto !important;
+    border-radius: 20px !important;
+    gap: 1.25rem !important;
+  }
+
+  body[dir="rtl"] .contact-right {
+    padding: 1.75rem 1.25rem !important;
+  }
+
+  .contact-field {
+    padding-bottom: 1rem !important;
+  }
+
+  .contact-field-title {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.2em !important;
+  }
+
+  .contact-field-value {
+    font-size: clamp(1.2rem, 5vw, 1.45rem) !important;
+    word-break: break-word !important;
+  }
+
+  /* 5. ABOUT PAGE MOBILE FIXES (Eliminating Cutoffs) */
+  .about-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-height: calc(100vh - 56px) !important;
+    padding: 1.5rem 1.25rem calc(80px + env(safe-area-inset-bottom, 0px)) 1.25rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .about-page-num {
+    position: static !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1.6rem !important;
+    text-align: center !important;
+  }
+
+  .about-layout {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.25rem !important;
+  }
+
+  .about-text-column {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.75rem 1.25rem !important;
+    border-radius: 20px !important;
+    gap: 1.25rem !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .about-header-group {
+    gap: 1rem !important;
+    justify-content: center !important;
+  }
+
+  .about-logo-circle {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .about-title {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+  }
+
+  .about-body-text {
+    font-size: 0.98rem !important;
+    line-height: 1.7 !important;
+  }
+
+  /* 6. GALLERY PAGE MOBILE OPTIMIZATIONS */
+  .gallery-page .site-header {
+    background: rgba(250, 246, 239, 0.96) !important;
+  }
+
+  .gallery-container {
+    height: calc(100vh - 56px - 64px) !important;
+    min-height: 420px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .gallery-content-wrapper {
+    height: 100% !important;
+  }
+
+  .gallery-grid {
+    height: 100% !important;
+    align-items: center !important;
+    padding: 0 12vw !important;
+    gap: 14vw !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .gallery-item {
+    scroll-snap-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: none !important;
+  }
+
+  .gallery-item-img {
+    max-height: 52vh !important;
+    max-width: 76vw !important;
+    object-fit: contain !important;
+    border-radius: 4px !important;
+    box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .gallery-swipe-pill {
+    position: fixed !important;
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(197, 160, 89, 0.35) !important;
+    border-radius: 99px !important;
+    padding: 5px 14px !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    color: var(--terracotta) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 100 !important;
+    pointer-events: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    white-space: nowrap !important;
+    animation: swipePillGlow 3s ease-in-out infinite !important;
+  }
+
+  @keyframes swipePillGlow {
+    0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.03); }
+  }
+
+  .gallery-watermark {
+    font-size: clamp(3rem, 15vw, 6rem) !important;
+    opacity: 0.04 !important;
+  }
+}
+
+/* Extra small devices (<= 380px, e.g. iPhone SE, Galaxy Fold front screen) */
+@media (max-width: 380px) {
+  .site-header {
+    padding: 0.5rem 0.75rem !important;
+  }
+  .site-header .brand-signature {
+    font-size: 1.15rem !important;
+  }
+  .dock-label {
+    font-size: 0.62rem !important;
+  }
+  .contact-headline,
+  .about-title {
+    font-size: 1.95rem !important;
+  }
+  .home-headline {
+    font-size: 1.85rem !important;
+  }
 }

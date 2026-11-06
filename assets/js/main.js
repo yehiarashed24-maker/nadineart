@@ -446,3 +446,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// ==========================================================================
+// NATIVE MOBILE APP DOCK INITIALIZATION & ACTIVE TAB SYNCHRONIZER
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', function () {
+  let dock = document.querySelector('.mobile-app-dock');
+  const path = window.location.pathname.toLowerCase();
+  const isAdmin = path.includes('admin');
+
+  if (!dock && !isAdmin) {
+    dock = document.createElement('nav');
+    dock.className = 'mobile-app-dock';
+    dock.setAttribute('aria-label', 'Mobile App Navigation');
+    dock.innerHTML = `
+      <a href="index.html" class="dock-item" data-page="home">
+        <div class="dock-icon-box"><i class="fa-solid fa-house"></i></div>
+        <span class="dock-label" data-i18n="nav_home">Home</span>
+      </a>
+      <a href="gallery.html" class="dock-item" data-page="gallery">
+        <div class="dock-icon-box"><i class="fa-solid fa-palette"></i></div>
+        <span class="dock-label" data-i18n="nav_gallery">Gallery</span>
+      </a>
+      <a href="about.html" class="dock-item" data-page="about">
+        <div class="dock-icon-box"><i class="fa-solid fa-feather-pointed"></i></div>
+        <span class="dock-label" data-i18n="nav_about">About</span>
+      </a>
+      <a href="contact.html" class="dock-item" data-page="contact">
+        <div class="dock-icon-box"><i class="fa-solid fa-paper-plane"></i></div>
+        <span class="dock-label" data-i18n="nav_contact">Contact</span>
+      </a>
+    `;
+    document.body.appendChild(dock);
+  }
+
+  if (dock) {
+    const items = dock.querySelectorAll('.dock-item');
+    let activeFound = false;
+    items.forEach(item => {
+      const page = item.getAttribute('data-page');
+      const isMatch = (page === 'gallery' && path.includes('gallery')) ||
+                      (page === 'about' && path.includes('about')) ||
+                      (page === 'contact' && path.includes('contact')) ||
+                      (page === 'home' && (!path.includes('gallery') && !path.includes('about') && !path.includes('contact') && !path.includes('admin')));
+      if (isMatch && !activeFound) {
+        item.classList.add('active');
+        activeFound = true;
+      } else {
+        item.classList.remove('active');
+      }
+    });
+
+    if (window.setLanguage && window.currentLang) {
+      window.setLanguage(window.currentLang);
+    }
+  }
+});

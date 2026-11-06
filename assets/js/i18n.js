@@ -56,7 +56,8 @@ const translations = {
     gallery_empty_desc: "The atelier is currently preparing an exclusive new collection for Nadine Baghdadi. Original artworks will be unveiled here soon.",
     gallery_empty_cta: "COMMISSION ARTWORK",
     view_horizontal: "Stroll",
-    view_grid: "Salon Grid"
+    view_grid: "Salon Grid",
+    swipe_hint: "Swipe to explore"
   },
   ar: {
     nav_home: "الرئيسية",
@@ -110,7 +111,8 @@ const translations = {
     gallery_empty_desc: "يتم حالياً تجهيز مجموعة اللوحات والأعمال الفنية الحصرية للفنانة نادين بغدادي ليتم تدشينها هنا قريباً.",
     gallery_empty_cta: "تواصل مع الفنانة",
     view_horizontal: "ممشى المعرض",
-    view_grid: "شبكة الصالون"
+    view_grid: "شبكة الصالون",
+    swipe_hint: "اسحب للتنقل بين اللوحات"
   }
 };
 
