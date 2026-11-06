@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="gallery-page">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#faf6ef">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Curated Gallery | Nadine Baghdadi Art Gallery</title>
+  <link rel="icon" href="assets/images/logo-badge.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cairo:wght@300;400;500;600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body class="gallery-page">
+
+  <!-- Luxury Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <nav class="header-nav-left" aria-label="Main Navigation">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="gallery.html" class="active" data-i18n="nav_gallery">Gallery</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+      </nav>
+      <div class="header-center">
+        <a href="index.html" class="header-brand" aria-label="Nadine Baghdadi Home">
+          <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi Logo" class="header-brand-logo">
+          <span class="brand-signature">Nadine Baghdadi</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Change Language">
+          <i class="fa-solid fa-globe"></i> عربي
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Giant Atmospheric Background Typographic Watermark (Artist Signature Calligraphy) -->
+  <div class="gallery-watermark" id="galleryWatermark">Nadine Baghdadi</div>
+
+  <main class="gallery-container">
+    <div class="gallery-ambient-layer"></div>
+    <div class="gallery-content-wrapper">
+      <div class="gallery-header-logo">
+        <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi Logo" class="brand-logo-circle">
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Empty Gallery State (Ready for Nadine's works to be added via Admin or Code) -->
+        <div class="gallery-empty-state" id="galleryEmptyState">
+          <div class="gallery-empty-icon">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <h2 class="gallery-empty-title" data-i18n="gallery_empty_title">
+            Curating New Masterpieces
+          </h2>
+          <p class="gallery-empty-desc" data-i18n="gallery_empty_desc">
+            The atelier is currently preparing an exclusive new collection for Nadine Baghdadi. Original artworks will be unveiled here soon.
+          </p>
+          <a href="contact.html" class="home-cta" data-i18n="gallery_empty_cta">
+            COMMISSION ARTWORK
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/anime.umd.min.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/gallery-animations.js"></script>
+</body>
+</html>

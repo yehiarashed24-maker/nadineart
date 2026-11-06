@@ -1,0 +1,15 @@
+{
+  "name": "nadine-baghdadi-art-gallery",
+  "version": "1.0.0",
+  "description": "Nadine Baghdadi Atelier & Contemporary Art Gallery",
+  "main": "assets/js/main.js",
+  "scripts": {
+    "start": "serve .",
+    "build:shader": "esbuild src/admin-shader-entry.js --bundle --minify --outfile=assets/js/admin-shader.js"
+  },
+  "dependencies": {
+    "@paper-design/shaders": "^0.0.80",
+    "@paper-design/shaders-react": "^0.0.80",
+    "mongodb": "^6.22.0"
+  }
+}

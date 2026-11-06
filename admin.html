@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="admin-page">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="theme-color" content="#09080c">
+  <title>Curator Studio • Admin Panel | Nadine Baghdadi</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-badge.jpg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Alex+Brush&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Admin Styles -->
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body class="admin-body">
+
+  <!-- Interactive Warp WebGL Shader (Admin Only) -->
+  <div class="admin-shader-container" id="adminShaderCanvas" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       1. SECURE LOGIN VIEW (21ST.DEV HERO DESIGN - OPEN & MINIMALIST)
+       ========================================================================= -->
+  <section class="admin-auth-screen" id="authScreen" role="region" aria-label="Admin Authentication">
+    <div class="auth-hero-container">
+      
+      <!-- Brand Pill Badge -->
+      <div class="auth-brand-badge">
+        <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi" class="auth-logo-circle">
+        <span class="auth-brand-name">Nadine Baghdadi</span>
+      </div>
+
+      <!-- Hero Heading -->
+      <h1 class="auth-hero-title">Curator Private Atelier</h1>
+
+      <!-- Subtitle -->
+      <p class="auth-hero-subtitle">
+        Protected administrative portal for gallery curation, artwork cataloging, and exhibition management.
+      </p>
+
+      <!-- Minimalist Floating Form (No Enclosing Box / No AI Card) -->
+      <form id="loginForm" class="auth-hero-form" autocomplete="off">
+        
+        <!-- Floating Frosted Glass Pill Input -->
+        <div class="auth-floating-input-pill">
+          <i class="fa-solid fa-key auth-input-icon"></i>
+          <input type="password" id="adminPassword" class="auth-pill-field" placeholder="Enter administrative key..." required autofocus>
+          <button type="button" class="btn-toggle-capsule-pw" id="btnTogglePw" aria-label="Show password">
+            <i class="fa-regular fa-eye" id="togglePwIcon"></i>
+          </button>
+        </div>
+
+        <!-- Cooldown / Lockout Notice -->
+        <div id="lockoutNotice" class="lockout-notice" style="display: none;">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span id="lockoutText">Security cooldown active. Please wait 5:00</span>
+        </div>
+
+        <div id="authErrorMsg" class="auth-error-msg" style="display: none;">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span id="authErrorText">Invalid security key. Please try again.</span>
+        </div>
+
+        <!-- Pill Actions Directly from 21st.dev Component -->
+        <div class="auth-pills-row">
+          <button type="submit" id="btnLogin" class="btn-pill-submit">
+            <span>Authenticate Session</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <a href="gallery.html" class="btn-pill-secondary">
+            <span>View Gallery</span>
+          </a>
+        </div>
+
+        <div class="auth-capsule-footer">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>End-to-End Encrypted Session • PBKDF2 Protected</span>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       2. PROTECTED ADMIN DASHBOARD VIEW
+       ========================================================================= -->
+  <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+
+    <!-- Top Navigation Header -->
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi" class="admin-brand-logo">
+        <div class="admin-brand-text">
+          <span class="admin-signature">Nadine Baghdadi</span>
+          <span class="admin-badge">Admin Studio</span>
+        </div>
+      </div>
+
+      <div class="admin-header-right">
+        <div id="cloudSyncStatus" class="sync-status-badge synced" title="All changes save automatically to the live gallery">
+          <i class="fa-solid fa-circle-check"></i>
+          <span class="desktop-text">Live Synced</span>
+        </div>
+        <a href="gallery.html" target="_blank" class="btn-secondary btn-nav-action" title="View Public Gallery">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span class="desktop-text">View Gallery</span>
+        </a>
+        <button type="button" class="btn-secondary btn-nav-action" id="btnChangePassword" title="Security Settings">
+          <i class="fa-solid fa-key"></i>
+          <span class="desktop-text">Change Key</span>
+        </button>
+        <button type="button" class="btn-danger btn-nav-action" id="btnLogout" title="Sign Out">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span class="desktop-text">Sign Out</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Content -->
+    <main class="admin-main">
+      <div class="admin-container">
+
+        <!-- Metrics & Summary Row -->
+        <section class="admin-stats-grid" aria-label="Gallery Statistics">
+          <div class="stat-card">
+            <div class="stat-icon icon-gold"><i class="fa-solid fa-palette"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Artworks</span>
+              <span class="stat-value" id="statTotalArtworks">0</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-purple"><i class="fa-solid fa-shield-heart"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Vault Status</span>
+              <span class="stat-value text-green">Encrypted</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gallery Action Bar -->
+        <section class="admin-toolbar">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="searchInput" placeholder="Search paintings by title or price...">
+            </div>
+          </div>
+
+          <div class="toolbar-right">
+            <button type="button" class="btn-primary" id="btnAddNewArtwork">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add New Artwork</span>
+            </button>
+            <button type="button" class="btn-gold" id="btnPublishChanges" title="Save and Deploy Gallery Data">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span>Save &amp; Publish</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Artworks Table / Grid View -->
+        <section class="artworks-section">
+          <div class="artworks-table-card">
+            <div class="table-responsive">
+              <table class="artworks-table" id="artworksTable">
+                <thead>
+                  <tr>
+                    <th style="width: 50px;">#</th>
+                    <th style="width: 80px;">Preview</th>
+                    <th>Artwork Title</th>
+                    <th>Price</th>
+                    <th style="width: 70px;">Glow</th>
+                    <th style="width: 110px;">Order</th>
+                    <th style="width: 140px; text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="artworksTableBody">
+                  <!-- Injected dynamically by admin.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="artworksEmptyState" class="empty-state" style="display: none;">
+              <i class="fa-solid fa-box-open"></i>
+              <h3>No artworks found</h3>
+              <p>Add a new painting or clear your search.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       3. ADD / EDIT ARTWORK MODAL
+       ========================================================================= -->
+  <div class="admin-modal" id="artworkModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="artworkModalBackdrop"></div>
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="btnArtworkModalClose" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-palette modal-header-icon"></i>
+        <h2 class="modal-title" id="artworkModalTitle">Add New Artwork</h2>
+      </div>
+
+      <form id="artworkForm" class="modal-form" autocomplete="off">
+        <input type="hidden" id="artworkEditId" value="">
+
+        <!-- Title -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="inputTitle">Artwork Title <span class="required">*</span></label>
+            <input type="text" id="inputTitle" class="form-input" placeholder="e.g. Celestial Twilight" required>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="inputPrice">Price (EGP) <span class="required">*</span></label>
+            <input type="text" id="inputPrice" class="form-input" placeholder="e.g. EGP 5,000" required>
+          </div>
+        </div>
+
+        <!-- Image Input: URL or File Upload with Local Preview -->
+        <div class="form-group full-width">
+          <label>Artwork Image <span class="required">*</span></label>
+          <div class="image-uploader-wrapper">
+            <!-- Image Preview Box -->
+            <div class="image-preview-box" id="imagePreviewBox">
+              <img id="imagePreviewImg" src="" alt="Preview" style="display: none;">
+              <div id="imageUploadPlaceholder" class="upload-placeholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Upload image or enter URL below</span>
+              </div>
+            </div>
+
+            <!-- Upload Controls -->
+            <div class="uploader-inputs">
+              <div class="file-upload-btn-wrap">
+                <label for="inputFileUpload" class="btn-secondary btn-file-picker">
+                  <i class="fa-solid fa-image"></i>
+                  <span>Upload from Computer / Mobile</span>
+                </label>
+                <input type="file" id="inputFileUpload" accept="image/*" style="display: none;">
+              </div>
+              <div class="url-divider"><span>OR</span></div>
+              <input type="text" id="inputImageUrl" class="form-input" placeholder="Paste image web URL (https://...)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Purchase / Inquiry Link -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="inputLink">Purchase Link (Optional)</label>
+            <input type="text" id="inputLink" class="form-input" placeholder="https://instagram.com/... or WhatsApp/Shop link">
+          </div>
+        </div>
+
+        <!-- Ambient Lighting Glow Color -->
+        <div class="form-group full-width">
+          <label>Signature Ambient Glow Color (Background Lighting)</label>
+          <div class="ambient-color-selector">
+            <input type="color" id="inputAmbientColor" value="#3b2b1f" class="color-picker-input">
+            <div class="color-presets-row" id="ambientPresetsRow">
+              <button type="button" class="ambient-preset-btn" style="background:#3b2b1f;" data-color="#3b2b1f" title="Brown"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#4a2912;" data-color="#4a2912" title="Copper"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#112738;" data-color="#112738" title="Deep Blue"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#3d2447;" data-color="#3d2447" title="Purple"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#4a1919;" data-color="#4a1919" title="Dark Red"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#3b2718;" data-color="#3b2718" title="Clay"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#183329;" data-color="#183329" title="Forest Green"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#113622;" data-color="#113622" title="Deep Green"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#423311;" data-color="#423311" title="Gold"></button>
+              <button type="button" class="ambient-preset-btn" style="background:#211d42;" data-color="#211d42" title="Twilight"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="btnArtworkCancel">Cancel</button>
+          <button type="button" class="btn-primary" id="btnArtworkSave">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Save Artwork</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. CHANGE SECURITY KEY MODAL
+       ========================================================================= -->
+  <div class="admin-modal" id="securityModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="securityModalBackdrop"></div>
+    <div class="modal-card modal-card-sm">
+      <button type="button" class="modal-close" id="btnSecurityModalClose">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-shield-keyhole modal-header-icon"></i>
+        <h2 class="modal-title">Change Master Security Key</h2>
+      </div>
+
+      <form id="securityForm" class="modal-form" autocomplete="off" onsubmit="return false;">
+        <div class="form-group full-width">
+          <label for="currentPasswordInput">Current Password</label>
+          <input type="password" id="currentPasswordInput" class="form-input" required>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="newPasswordInput">New Password (Min 8 characters)</label>
+          <input type="password" id="newPasswordInput" class="form-input" required minlength="8">
+        </div>
+
+        <div class="form-group full-width">
+          <label for="confirmPasswordInput">Confirm New Password</label>
+          <input type="password" id="confirmPasswordInput" class="form-input" required minlength="8">
+        </div>
+
+        <div id="securityErrorMsg" class="auth-error-msg" style="display: none;"></div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="btnSecurityCancel">Cancel</button>
+          <button type="submit" class="btn-primary" id="btnSecuritySave">Update Security Key</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. PUBLISH & DEPLOY MODAL (Zero-Database Local Vault & Export)
+       ========================================================================= -->
+  <div class="admin-modal" id="publishModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="publishModalBackdrop"></div>
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="btnPublishModalClose">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-cloud-arrow-up modal-header-icon" style="color: #d8b26e;"></i>
+        <h2 class="modal-title">Publish &amp; Synchronize Gallery</h2>
+      </div>
+
+      <div class="publish-content">
+        <p class="publish-desc">
+          All your changes are instantly saved to your browser vault and immediately display in your gallery. 
+          To publish them live on Vercel without a database:
+        </p>
+
+        <div class="publish-options-grid">
+          <!-- Option 1: Direct File Download -->
+          <div class="publish-option-card">
+            <div class="opt-icon"><i class="fa-solid fa-file-arrow-down"></i></div>
+            <h4>Download artworks.json</h4>
+            <p>Download the latest dataset and place it in <code>assets/data/artworks.json</code>.</p>
+            <button type="button" class="btn-secondary" id="btnDownloadJson">
+              <i class="fa-solid fa-download"></i>
+              <span>Download artworks.json</span>
+            </button>
+          </div>
+
+          <!-- Option 2: Copy JSON Data -->
+          <div class="publish-option-card">
+            <div class="opt-icon"><i class="fa-solid fa-copy"></i></div>
+            <h4>Copy JSON Payload</h4>
+            <p>Copy the clean JSON data directly to your clipboard.</p>
+            <button type="button" class="btn-secondary" id="btnCopyJson">
+              <i class="fa-regular fa-clone"></i>
+              <span>Copy Data to Clipboard</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Optional GitHub Direct Sync -->
+        <div class="github-sync-panel">
+          <div class="sync-header">
+            <i class="fa-brands fa-github"></i>
+            <span>Instant GitHub Direct Commit (Optional Auto-Sync)</span>
+          </div>
+          <p class="sync-sub">Enter your GitHub Repository and Personal Access Token (PAT) with repo scope. Once saved, every new artwork or edit will commit directly to GitHub, triggering a live Vercel rebuild automatically without touching the terminal.</p>
+          <div class="sync-input-row" style="margin-bottom: 0.6rem;">
+            <input type="text" id="githubRepoInput" class="form-input" placeholder="username/repository (e.g. yousef/nadine-art)">
+          </div>
+          <div class="sync-input-row">
+            <input type="password" id="githubTokenInput" class="form-input" placeholder="Enter GitHub Personal Access Token (PAT)...">
+            <button type="button" class="btn-primary" id="btnGithubCommit">
+              <i class="fa-solid fa-code-commit"></i>
+              <span>Push to GitHub</span>
+            </button>
+          </div>
+          <span id="githubStatusMsg" class="sync-status-msg"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="adminToast" role="status" aria-live="polite">
+    <i class="fa-solid fa-circle-check toast-icon"></i>
+    <span id="toastMessage">Changes saved successfully!</span>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/admin-shader.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+
+</html>

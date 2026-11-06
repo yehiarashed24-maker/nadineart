@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#faf6ef">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; object-src 'none';">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Nadine Baghdadi | Art Gallery</title>
+  <link rel="icon" href="assets/images/logo-badge.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cairo:wght@300;400;500;600;700&family=Great+Vibes&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+
+<body>
+  <!-- 1. Curator's Gallery Spotlight (Soft Warm Glow) -->
+  <div id="curatorSpotlight" class="curator-spotlight" aria-hidden="true"></div>
+
+  <!-- 4. Artist's Brushstroke Scroll Indicator -->
+  <div id="brushScrollTrack" class="brush-scroll-track" aria-hidden="true" style="display:none!important">
+    <div id="brushProgressBar" class="brush-progress-bar">
+      <span id="brushTip" class="brush-tip"></span>
+    </div>
+  </div>
+
+        <!-- Hana Bahaa Authentic Luxury Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <nav class="header-nav-left" aria-label="Main Navigation">
+        <a href="index.html" class="active" data-i18n="nav_home">Home</a>
+        <a href="gallery.html" data-i18n="nav_gallery">Gallery</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+      </nav>
+      <div class="header-center">
+        <a href="index.html" class="header-brand" aria-label="Nadine Baghdadi Home">
+          <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi Logo" class="header-brand-logo">
+          <span class="brand-signature">Nadine Baghdadi</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Change Language">
+          <i class="fa-solid fa-globe"></i> عربي
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <header class="home-hero">
+    <canvas id="heroDustCanvas" class="hero-dust-canvas" aria-hidden="true"></canvas>
+
+    <div class="home-brand">
+      <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi Logo" class="brand-logo-circle">
+      <div class="brand-title">
+        <span data-i18n="brand_title_1">NADINE BAGHDADI</span>
+        <span data-i18n="brand_title_2">ART GALLERY</span>
+      </div>
+    </div>
+
+    <h1 class="home-headline" data-i18n="home_headline">
+      Art that tells your story<br>in every space
+    </h1>
+
+    <!-- Authentic Live Artist Brushstroke Drawn in Real-Time -->
+    <div class="headline-brushstroke-wrapper" aria-hidden="true">
+      <svg class="hero-brushstroke-svg" viewBox="0 0 340 28" fill="none" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="artistBrushStrokeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#b08a4e" stop-opacity="0.25"/>
+            <stop offset="25%" stop-color="#b8693f"/>
+            <stop offset="75%" stop-color="#b8693f"/>
+            <stop offset="100%" stop-color="#b08a4e" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <path id="brushStrokePath" class="brush-stroke-path" d="M 6 18 C 55 8, 125 22, 195 12 C 245 5, 295 16, 332 13" stroke="url(#artistBrushStrokeGrad)" stroke-width="4.5" stroke-linecap="round"/>
+        <path id="brushStreakPath" class="brush-streak-path" d="M 22 21 C 75 12, 145 24, 215 15 C 265 9, 305 18, 325 16" stroke="#b08a4e" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+      </svg>
+    </div>
+
+    <div class="hero-bottom">
+      <a href="gallery.html" class="home-cta" data-i18n="home_cta">
+        EXPLORE GALLERY
+      </a>
+      <div class="scroll-indicator">
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Painting Video Section: video presented as a framed painting on a gallery wall -->
+  <section class="home-video-section" id="paintingVideoSection">
+    <div class="video-section-inner">
+      <div class="video-section-text">
+        <span class="video-eyebrow" data-i18n="video_eyebrow">BEHIND THE CANVAS</span>
+        <h2 class="video-section-title" data-i18n="video_title">Every piece begins<br>with a single line</h2>
+        <p class="video-section-desc" data-i18n="video_desc">Watch the brush meet the canvas, where each hand-painted artwork slowly comes to life.</p>
+      </div>
+
+      <div class="video-wall">
+        <figure class="painting-frame">
+          <div class="painting-mat">
+            <video id="paintingVideo" class="painting-video" src="assets/video/nadine-studio.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="metadata" aria-label="Nadine painting"></video>
+            <button type="button" class="painting-sound-btn" id="paintingSoundBtn" aria-label="Toggle sound">
+              <i class="fa-solid fa-volume-xmark"></i>
+            </button>
+          </div>
+          <figcaption class="painting-plaque">
+            <span>Art by Nadine</span>
+            <em data-i18n="video_plaque">Live on canvas</em>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- A Frame for Every House / Masterpieces Section (Hana Bahaa Style) -->
+  <section class="home-frame-section">
+    <div class="frame-container">
+      <div class="frame-left-content">
+        <h2 class="frame-section-title" data-i18n="frame_title">
+          <em>A frame<br>for every<br>house</em>
+        </h2>
+        <div class="frame-section-desc" data-i18n="frame_desc">
+          <p><em>A wall can hold many things, but the right piece, in the right frame, doesn't just hang, it speaks. Every frame here should fit your space as well as the art.</em></p>
+          <p><em>Which is why the last step of purchase is personalizing the frame...Truly the last brushstroke.</em></p>
+        </div>
+      </div>
+
+      <div class="frame-right-wall">
+        <div class="trio-wall-composition">
+          <!-- Main Hero Frame -->
+          <div class="framed-piece frame-oak frame-main-piece" title="Nadine Baghdadi Atelier">
+            <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi Atelier">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Made with Care Sub-Block -->
+    <div class="frame-care-block">
+      <div class="care-heart-icon"><i class="fa-regular fa-heart"></i></div>
+      <h3 class="care-title" data-i18n="care_title">Made with Care</h3>
+      <p class="care-desc" data-i18n="care_desc">My art is born from the land I love and the world we share, crafted to move you, connect with you, and live with you.</p>
+    </div>
+  </section>
+
+  <!-- Artist Snippet -->
+  <section class="home-artist-snippet">
+    <div class="snippet-content">
+      <p class="snippet-bio" data-i18n="snippet_bio">
+        Contemporary visual artist creating textured, emotive canvas paintings. Explore the atelier and upcoming curated works.
+      </p>
+      <a href="about.html" class="snippet-link" data-i18n="snippet_link">Read full story <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Luxury Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="assets/images/logo-badge.jpg" alt="Nadine Baghdadi" class="footer-logo">
+        <h3 data-i18n="footer_brand">NADINE BAGHDADI</h3>
+      </div>
+      <div class="footer-links">
+        <a href="gallery.html" data-i18n="nav_gallery">Gallery</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/art.by_nadine?rpxt=dWVsN3E3bGFweHc4" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Nadine Baghdadi. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="assets/js/anime.min.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/home-animations.js"></script>
+</body>
+
+</html>

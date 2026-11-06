@@ -1,0 +1,852 @@
+/* ==========================================================================
+   NADINE BAGHDADI — "LIGHT ATELIER" THEME
+   Front-end only visual redesign. Loaded AFTER style.css,
+   so it restyles the whole site without touching any logic / backend.
+   Palette: warm paper · ink · gold leaf · terracotta
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+:root {
+  --paper: #faf6ef;
+  --paper-2: #f3ece0;
+  --paper-3: #eadfce;
+  --ink: #2b2420;
+  --ink-soft: #6d6157;
+  --gold: #b08a4e;
+  --terracotta: #b8693f;
+  --line: rgba(43, 36, 32, 0.13);
+  --serif: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif;
+}
+
+/* ---------- Base ---------- */
+html,
+body {
+  background-color: var(--paper) !important;
+  color: var(--ink);
+}
+
+body::after {
+  background-color: var(--paper);
+}
+
+body[dir="rtl"] .home-headline {
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+body[dir="rtl"] .contact-headline {
+  font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+body[dir="rtl"] .about-title {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  letter-spacing: 0;
+}
+
+body[dir="rtl"] .home-headline,
+body[dir="rtl"] .contact-headline,
+body[dir="rtl"] .about-title,
+body[dir="rtl"] .frame-section-title,
+body[dir="rtl"] .snippet-bio,
+body[dir="rtl"] .care-title {
+  font-family: 'Cairo', sans-serif !important;
+  font-style: normal !important;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: rgba(250, 246, 239, 0.84) !important;
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.header-nav-left a {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.header-nav-left a:hover,
+.header-nav-left a.active {
+  color: var(--ink);
+}
+
+.header-nav-left a.active::after {
+  height: 1px;
+  bottom: -6px;
+  background: var(--gold);
+}
+
+.header-brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 2px 10px rgba(43, 36, 32, 0.18);
+  display: block;
+}
+
+.brand-signature {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.header-right .lang-toggle-btn {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.header-right .lang-toggle-btn:hover {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border-color: var(--ink) !important;
+}
+
+@media screen and (max-width: 900px) {
+  .header-nav-left {
+    border-top-color: var(--line);
+    gap: 1rem;
+  }
+
+  .header-nav-left a {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .header-nav-left {
+    gap: 0.7rem;
+  }
+
+  .header-nav-left a {
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ---------- HOME · Hero ---------- */
+.home-hero {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 48%, rgba(250, 246, 239, 0.80) 0%, rgba(250, 246, 239, 0.35) 60%, rgba(250, 246, 239, 0) 100%),
+    url('../images/wallpaper-home.jpg') no-repeat center center;
+  background-size: cover;
+  color: var(--ink);
+  justify-content: center;
+  gap: clamp(1.5rem, 4vh, 3rem);
+}
+
+/* Show the brand as a quiet typographic eyebrow above the headline */
+.home-brand {
+  display: flex !important;
+  margin-top: 0;
+}
+
+.home-brand .brand-logo-circle {
+  display: none;
+}
+
+.brand-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  color: var(--terracotta);
+  text-shadow: none;
+}
+
+.brand-title span {
+  display: inline-block;
+}
+
+.brand-title span + span::before {
+  content: '';
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin-inline-end: 0.9rem;
+}
+
+.home-headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(3.4rem, 8.4vw, 7.6rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-shadow: none;
+  margin: 0;
+}
+
+.hero-brushstroke-svg {
+  filter: none;
+}
+
+.hero-bottom {
+  gap: 1.5rem;
+}
+
+.home-cta {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 1.05rem 2.8rem;
+  text-decoration: none;
+  text-shadow: none;
+  margin-bottom: 0;
+  box-shadow: 0 14px 30px -12px rgba(43, 36, 32, 0.55);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, letter-spacing 0.35s ease;
+}
+
+.home-cta:hover {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  letter-spacing: 0.3em;
+  text-shadow: none;
+  box-shadow: 0 18px 36px -12px rgba(184, 105, 63, 0.6);
+}
+
+.scroll-indicator {
+  color: var(--ink-soft);
+}
+
+/* ---------- HOME · A frame for every house ---------- */
+.home-frame-section {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  color: var(--ink);
+  border-top: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.frame-left-content {
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 540px;
+}
+
+.frame-section-title {
+  font-family: var(--serif);
+  color: var(--ink);
+  text-shadow: none;
+  font-weight: 500;
+  flex: none;
+  font-size: clamp(3rem, 5.6vw, 4.8rem);
+  line-height: 1.02;
+}
+
+.frame-section-desc {
+  color: var(--ink-soft);
+  flex: none;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.frame-section-desc em {
+  font-style: normal;
+}
+
+.frame-right-wall {
+  perspective: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trio-wall-composition {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  perspective: none !important;
+  transform: none !important;
+  transform-style: flat !important;
+  display: flex;
+  justify-content: center;
+  max-width: none !important;
+}
+
+.frame-main-piece {
+  flex: none !important;
+  width: min(420px, 86vw) !important;
+  height: 430px !important;
+}
+
+.framed-piece {
+  transform: none !important;
+  transform-style: flat !important;
+  border: 14px solid #3a2214 !important;
+  border-image: none !important;
+  background: #fbf9f4 !important;
+  padding: 12px !important;
+  box-shadow:
+    0 20px 45px -10px rgba(43, 36, 32, 0.35),
+    0 4px 12px rgba(43, 36, 32, 0.18) !important;
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+.framed-piece:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 26px 52px -10px rgba(43, 36, 32, 0.42),
+    0 6px 16px rgba(43, 36, 32, 0.22) !important;
+}
+
+.frame-care-block {
+  border-top: 1px solid var(--line);
+}
+
+.care-heart-icon {
+  color: var(--terracotta);
+}
+
+.care-title {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.care-desc {
+  color: var(--ink-soft);
+}
+
+/* ---------- HOME · Artist snippet ---------- */
+.home-artist-snippet {
+  background: var(--paper);
+  padding: 7rem 2rem;
+}
+
+.snippet-avatar {
+  border: 2px solid var(--gold);
+  padding: 4px;
+  background: var(--paper);
+  width: 132px;
+  height: 132px;
+}
+
+.snippet-bio {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.snippet-link {
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  border-bottom: 1px solid var(--gold);
+}
+
+.snippet-link:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--ink) !important;
+  background-color: var(--ink) !important;
+  color: var(--paper);
+  border-top: none;
+}
+
+.footer-brand h3 {
+  color: var(--paper);
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+}
+
+.footer-logo {
+  border: 1px solid var(--gold);
+}
+
+.footer-links a {
+  color: rgba(250, 246, 239, 0.65);
+}
+
+.footer-links a:hover {
+  color: var(--gold);
+}
+
+.footer-social a {
+  color: rgba(250, 246, 239, 0.65);
+}
+
+.footer-social a:hover {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  color: rgba(250, 246, 239, 0.35);
+}
+
+/* ---------- CONTACT ---------- */
+.contact-container {
+  background:
+    linear-gradient(105deg, rgba(250, 246, 239, 0.75) 0%, rgba(250, 246, 239, 0.25) 100%),
+    url('../images/wallpaper-contact.jpg') no-repeat center center;
+  background-size: cover;
+  color: var(--ink);
+}
+
+.contact-headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(3.4rem, 7.4vw, 6.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.contact-brand-title {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.contact-right {
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 22px;
+  box-shadow: 0 30px 60px -30px rgba(43, 36, 32, 0.35);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  gap: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+body[dir="rtl"] .contact-right {
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+
+.contact-field {
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-field:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.contact-field-title {
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  color: var(--terracotta);
+  text-shadow: none;
+}
+
+.contact-field-value {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 500;
+  color: var(--ink);
+  text-shadow: none;
+}
+
+body[dir="rtl"] .contact-field-value {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+}
+
+.contact-field-value a:hover {
+  color: var(--terracotta);
+  text-decoration: none;
+}
+
+/* ---------- ABOUT ---------- */
+.about-container {
+  background:
+    linear-gradient(180deg, rgba(250, 246, 239, 0.45), rgba(250, 246, 239, 0.15)),
+    url('../images/wallpaper-about.jpg') no-repeat center center;
+  background-size: cover;
+  color: var(--ink);
+}
+
+.about-page-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.about-layout {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.about-text-column {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px -30px rgba(43, 36, 32, 0.25);
+  max-width: 680px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.about-logo-circle {
+  border: 2px solid var(--gold);
+}
+
+.about-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(3.4rem, 6.5vw, 5.6rem);
+  color: var(--ink);
+}
+
+.about-body-text {
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+/* Arched "gallery window" portrait */
+.about-image-wrapper {
+  border-radius: 999px 999px 18px 18px;
+  max-height: 560px;
+  border: 8px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 40px 70px -30px rgba(43, 36, 32, 0.5);
+}
+
+/* ---------- GALLERY ---------- */
+.gallery-container {
+  background: radial-gradient(circle at 50% 40%, #f8f2e8 0%, #eee5d6 65%, #e4d9c6 100%);
+}
+
+.gallery-container::before {
+  display: none;
+}
+
+.gallery-container::after {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.12) 55%, transparent);
+}
+
+/* JS tints this per artwork; keep it as a soft coloured breath on the wall */
+.gallery-ambient-layer {
+  background-color: #e0c9a6;
+  opacity: 0.12;
+}
+
+.gallery-watermark {
+  color: var(--ink);
+  opacity: 0.055;
+}
+
+body[dir="rtl"] .gallery-watermark {
+  opacity: 0.05;
+}
+
+.gallery-item::before {
+  background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.15) 45%, transparent 75%);
+}
+
+.gallery-item-img {
+  border-color: #2b2420;
+  box-shadow:
+    0 34px 50px -22px rgba(43, 36, 32, 0.55),
+    0 12px 22px -8px rgba(43, 36, 32, 0.3);
+  -webkit-box-reflect: none;
+}
+
+.gallery-item-info {
+  background-image: none;
+  background: #fffdf9;
+  border-left: 3px solid var(--gold);
+  box-shadow: 0 22px 40px -16px rgba(43, 36, 32, 0.4);
+}
+
+body[dir="rtl"] .gallery-item-info {
+  border-left: none;
+  border-right: 3px solid var(--gold);
+}
+
+.gallery-item-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+body[dir="rtl"] .gallery-item-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.15rem;
+}
+
+.gallery-item-artist {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.gallery-item-price {
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.gallery-item-category-tag {
+  color: var(--gold) !important;
+}
+
+/* Category dock */
+.curator-dock-glass {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 36px -16px rgba(43, 36, 32, 0.3);
+}
+
+.curator-dock-indicator {
+  background: rgba(176, 138, 78, 0.2);
+  border: 0;
+  box-shadow: inset 0 0 0 1px rgba(176, 138, 78, 0.45);
+}
+
+.curator-tab {
+  color: var(--ink-soft);
+}
+
+.curator-tab:hover,
+.curator-tab.active {
+  color: var(--ink);
+}
+
+/* Empty state (moved out of inline styles) */
+.gallery-grid:has(.gallery-empty-state) {
+  padding: 0 1.5rem;
+  justify-content: center;
+}
+
+.gallery-empty-state {
+  flex: 0 0 auto;
+  width: min(680px, 92vw);
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.gallery-empty-icon {
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.gallery-empty-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.gallery-empty-desc {
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin: 0 auto 2.5rem auto;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+body[dir="rtl"] .gallery-empty-title {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Mobile gallery (style.css forces dark values with !important) */
+@media (max-width: 768px) {
+  .gallery-page .site-header {
+    background: rgba(250, 246, 239, 0.96) !important;
+  }
+
+  .gallery-page .header-nav-left {
+    border-top: 1px solid var(--line) !important;
+  }
+
+  .curator-dock-glass {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: 0 8px 24px -10px rgba(43, 36, 32, 0.3) !important;
+  }
+
+  .curator-dock-indicator {
+    background: rgba(176, 138, 78, 0.2) !important;
+    border: 0 !important;
+    box-shadow: inset 0 0 0 1px rgba(176, 138, 78, 0.45) !important;
+  }
+
+  .curator-tab {
+    color: var(--ink-soft) !important;
+  }
+
+  .curator-tab.active {
+    color: var(--ink) !important;
+    background: rgba(176, 138, 78, 0.2) !important;
+    border: 1px solid rgba(176, 138, 78, 0.45) !important;
+    box-shadow: none !important;
+  }
+
+  .gallery-page .gallery-item-img {
+    border-color: #2b2420 !important;
+    box-shadow: 0 18px 30px -14px rgba(43, 36, 32, 0.55) !important;
+  }
+
+  .gallery-page .gallery-item-info {
+    background: #fffdf9 !important;
+    border-left: 3px solid var(--gold) !important;
+    box-shadow: 0 10px 22px -10px rgba(43, 36, 32, 0.35) !important;
+  }
+
+  body[dir="rtl"].gallery-page .gallery-item-info {
+    border-left: none !important;
+    border-right: 3px solid var(--gold) !important;
+  }
+
+  .gallery-page .gallery-item-category-tag {
+    color: var(--gold) !important;
+  }
+
+  .gallery-page .gallery-item-title {
+    font-size: 1.2rem !important;
+  }
+}
+
+
+/* ---------- HOME · Painting video (arched window) ---------- */
+.home-video-section {
+  background: #efe6dc;
+  padding: 7rem 2rem;
+  text-align: center;
+}
+
+.video-section-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.video-eyebrow {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--terracotta);
+  margin-bottom: 1.2rem;
+}
+
+.video-section-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0 0 1.2rem;
+}
+
+.video-section-desc {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+body[dir="rtl"] .video-section-title { font-family: 'Cairo', sans-serif; line-height: 1.35; }
+body[dir="rtl"] .video-eyebrow { letter-spacing: 0; }
+
+.video-wall { display: flex; justify-content: center; }
+
+.painting-frame {
+  margin: 0;
+  width: min(340px, 82vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.painting-mat {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 18px 18px;
+  overflow: hidden;
+  border: 8px solid #fff;
+  background: #ddd;
+  box-shadow: 0 30px 50px -22px rgba(43, 36, 32, 0.45);
+}
+
+.painting-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.painting-sound-btn {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: rgba(43, 36, 32, 0.65);
+  color: #fff;
+  transition: background 0.25s ease;
+}
+.painting-sound-btn:hover { background: var(--terracotta); }
+
+.painting-plaque {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.painting-plaque em { font-style: normal; font-size: 0.68rem; color: var(--ink-soft); }
+
+@media (max-width: 860px) {
+  .home-video-section { padding: 5rem 1.5rem; }
+}

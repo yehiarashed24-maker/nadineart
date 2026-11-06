@@ -1,0 +1,2559 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cairo:wght@300;400;500;600;700;800;900&family=Great+Vibes&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* Local Fallbacks for Signature Fonts */
+@font-face {
+  font-family: 'Alex Brush';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/alexbrush.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Allura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/allura.ttf') format('truetype');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+html {
+  background-color: #020304 !important;
+  color: #ffffff;
+}
+
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  position: relative !important;
+  background-color: #020304 !important;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  /* Native App Feel */
+}
+
+/* Ensure overscroll rubber-band at bottom never reveals white canvas */
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50vh;
+  background-color: #020304;
+  z-index: -9999;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   ARABIC FONT (CAIRO) & RTL SUPPORT
+   ========================================================================== */
+body[dir="rtl"],
+html[lang="ar"] body,
+.rtl-mode {
+  font-family: 'Cairo', sans-serif !important;
+}
+
+body[dir="rtl"] .brand-title,
+body[dir="rtl"] .contact-brand-title,
+body[dir="rtl"] .about-title,
+body[dir="rtl"] .home-headline,
+body[dir="rtl"] .contact-headline,
+body[dir="rtl"] .contact-field-title,
+body[dir="rtl"] .header-nav-left a,
+body[dir="rtl"] .home-cta {
+  font-family: 'Cairo', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+body[dir="rtl"] .home-headline,
+body[dir="rtl"] .contact-headline {
+  line-height: 1.25;
+}
+
+body[dir="rtl"] .about-page-num {
+  right: auto;
+  left: clamp(2.5rem, 5vw, 5rem);
+}
+
+body[dir="rtl"] .contact-right {
+  padding-left: 0;
+  padding-right: clamp(2rem, 5vw, 5rem);
+}
+
+body[dir="rtl"] .brand-signature {
+  direction: ltr;
+  display: inline-block;
+  font-family: 'Alex Brush', 'Allura', cursive !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   HANA BAHAA AUTHENTIC NAVBAR (MATCHING HANABAHAA.COM EXACTLY)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #121212;
+  /* Solid luxurious dark theme */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 3rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+}
+
+.site-header .header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Left Navigation Links */
+.header-nav-left {
+  flex: 1;
+  display: flex;
+  gap: clamp(1.1rem, 1.8vw, 1.85rem);
+  align-items: center;
+  margin-right: 1.8rem;
+}
+
+body[dir="rtl"] .header-nav-left {
+  margin-right: 0;
+  margin-left: 1.8rem;
+}
+
+.header-center {
+  flex: 0 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+}
+
+.header-nav-left a {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #d1d5db;
+  text-decoration: none;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease, opacity 0.25s ease;
+  padding: 0.2rem 0;
+  position: relative;
+}
+
+.header-nav-left a:hover {
+  color: #ffffff;
+}
+
+.header-nav-left a.active {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.header-nav-left a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+/* Mobile Hamburger Toggle */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.35rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Center Brand Signature */
+.header-center {
+  flex: 0 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+  line-height: 1;
+}
+
+.header-brand:hover {
+  opacity: 0.94;
+}
+
+.header-brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.header-brand:hover .header-brand-logo {
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.brand-signature {
+  font-family: 'Alex Brush', 'Allura', 'Great Vibes', cursive !important;
+  font-size: 2.55rem;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  transform: translateY(2px); /* Optical baseline alignment with round logo */
+}
+
+/* Right Action Buttons (Search, Bag, Lang) */
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.header-icon-btn {
+  background: transparent;
+  border: none;
+  color: #d1d5db;
+  font-size: 1.15rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 0.35rem;
+}
+
+.header-icon-btn:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.header-icon-btn .cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  background: #e8437f;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid #121212;
+}
+
+.header-right .lang-toggle-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #ffffff !important;
+  font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 0.4rem 0.95rem !important;
+  border-radius: 9999px !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+}
+
+.header-right .lang-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   PAGE 1: HOME (EXACT MATCH TO 1.svg WITH NADINE BAGHDADI LOGO & TEXT)
+   ========================================================================== */
+.home-hero {
+  width: 100vw;
+  min-height: 100vh;
+  background: url('../images/bg-home.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(2.5rem, 5vh, 4.5rem) 2rem clamp(2.5rem, 5vh, 4.5rem);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-dust-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.home-brand,
+.home-headline,
+.hero-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.home-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 4rem;
+}
+
+.brand-logo-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  background: #ffffff;
+}
+
+.brand-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  letter-spacing: 0.32em;
+  color: #ffffff;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.brand-title span {
+  display: block;
+}
+
+.home-headline {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 7.5vw, 6.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+  max-width: 1100px;
+  margin: auto 0;
+  position: relative;
+}
+
+/* Live Artist Brushstroke Inscription for Headline */
+.home-headline .brush-line {
+  display: block;
+  position: relative;
+  white-space: pre-wrap;
+}
+
+.home-headline .brush-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.home-headline .brush-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(6px) scale(0.92);
+  filter: blur(8px);
+  will-change: transform, opacity, filter;
+  transition: text-shadow 0.4s ease;
+}
+
+.home-headline .brush-char.space {
+  width: 0.28em;
+  display: inline-block;
+}
+
+.home-headline.anime-painted .brush-char {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Active Artist Brush Tip Glow Particle */
+.headline-brush-tip {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #fae29c 40%, #c8a951 80%, transparent 100%);
+  box-shadow: 0 0 16px #fae29c, 0 0 35px #c8a951;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  transition: opacity 0.2s ease;
+}
+
+.headline-brush-tip.active {
+  opacity: 1;
+}
+
+.headline-ink-drop {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fae29c;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 19;
+  animation: inkDropFade 0.7s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes inkDropFade {
+  0% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(0.2) translateY(10px);
+    opacity: 0;
+  }
+}
+
+.home-cta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  letter-spacing: 0.22em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.home-cta:hover {
+  letter-spacing: 0.28em;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 4px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   PAGE 2: CONTACT (EXACT MATCH TO 2.svg WITH NADINE BAGHDADI LOGO & TEXT)
+   ========================================================================== */
+.contact-container {
+  width: 100vw;
+  min-height: 100vh;
+  background: url('../images/bg-contact.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  position: relative;
+  padding: clamp(6.5rem, 12vh, 8rem) clamp(2.5rem, 6vw, 6rem) clamp(2.5rem, 5vh, 4.5rem);
+}
+
+.contact-layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+}
+
+.contact-left {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-brand-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+  letter-spacing: 0.32em;
+  color: #ffffff;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.contact-brand-title span {
+  display: block;
+}
+
+.contact-headline {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 6.8vw, 6.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-bottom: 2rem;
+}
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(2rem, 5vh, 3.5rem);
+  padding-left: clamp(2rem, 5vw, 5rem);
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.contact-field-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.contact-field-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.4;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.contact-field-value a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   PAGE 3: ABOUT ME (EXACT MATCH TO UNTITLED DESIGN.SVG LAYOUT)
+   ========================================================================== */
+.about-container {
+  width: 100vw;
+  min-height: 100vh;
+  background: url('../images/about-frame.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  position: relative;
+  padding: clamp(6.5rem, 12vh, 8rem) clamp(3rem, 7vw, 7.5rem) clamp(3rem, 6vh, 5.5rem);
+  color: #242938;
+}
+
+.about-page-num {
+  position: absolute;
+  top: clamp(2rem, 4vh, 3.5rem);
+  right: clamp(2.5rem, 5vw, 5rem);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #9aa1b8;
+  letter-spacing: 0.05em;
+}
+
+.about-layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.about-text-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.25rem;
+  max-width: 580px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.about-header-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.about-logo-circle {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #9aa1b8;
+  background: #ffffff;
+}
+
+.about-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(3.2rem, 6.5vw, 5.2rem);
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.about-body-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  line-height: 1.7;
+  color: #374151;
+  font-weight: 500;
+}
+
+.about-body-text p+p {
+  margin-top: 1.5rem;
+}
+
+/* Artist Image Column */
+.about-image-wrapper {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-artist-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.about-image-wrapper:hover .about-artist-img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   RESPONSIVE STYLES
+   ========================================================================== */
+@media (max-width: 900px) {
+
+  html,
+  body {
+    overflow-y: auto;
+  }
+
+  .contact-container,
+  .about-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 4rem 1.5rem;
+  }
+
+  .contact-layout,
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .contact-left {
+    height: auto;
+    gap: 2rem;
+  }
+
+  .contact-right {
+    padding-left: 0;
+    gap: 2rem;
+  }
+
+  .home-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 4rem 1.5rem;
+  }
+
+  .about-image-wrapper {
+    min-height: 320px;
+  }
+
+  /* Mobile Bottom Tab Bar */
+  .page-nav {
+    top: auto;
+    bottom: 0;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 11, 13, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0.75rem 1rem env(safe-area-inset-bottom, 1rem);
+    /* iPhone safe area */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+  }
+
+  .page-nav a,
+  .page-nav button {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    font-size: 0.65rem;
+    color: #8c93aa;
+    background: transparent !important;
+  }
+
+  .page-nav a.active {
+    color: #fff;
+  }
+
+  .page-nav i {
+    display: block;
+    /* Show icons on mobile */
+    font-size: 1.25rem;
+  }
+
+  .lang-toggle-btn {
+    margin-left: 0;
+  }
+
+  /* Add padding to the bottom so content isn't hidden behind the tab bar */
+  body {
+    padding-bottom: 80px;
+  }
+}
+
+/* ==========================================================================
+   PAGE 4: GALLERY
+   ========================================================================== */
+html.gallery-page,
+body.gallery-page {
+  overflow: hidden !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.gallery-container {
+  width: 100vw;
+  height: calc(100vh - 65px);
+  max-height: calc(100vh - 65px);
+  background: radial-gradient(circle at 50% 45%, #272a33 0%, #1a1c24 60%, #121318 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Dynamic Ambient Glow Layer - Brighter & warmer */
+.gallery-ambient-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #353b4a;
+  mask-image: radial-gradient(circle at 50% 50%, black 25%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 25%, transparent 85%);
+  transition: background-color 1.2s ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* Subtle texture for the wall */
+.gallery-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Global top ambient lighting - Warm gallery wash */
+.gallery-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  background: linear-gradient(to bottom, rgba(255, 248, 235, 0.16), rgba(255, 245, 230, 0.05) 50%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-header-logo {
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+  z-index: 100;
+}
+
+body[dir="rtl"] .gallery-header-logo {
+  left: auto;
+  right: 2.5rem;
+}
+
+.gallery-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.gallery-grid {
+  will-change: opacity, transform;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15vw;
+  padding: 0 50vw;
+  height: 100%;
+  width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.gallery-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Spotlight Beam falling on each painting - Pure Quiet Luxury Daylight */
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  top: -20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  height: 125vh;
+  background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 45%, transparent 75%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-item-img {
+  max-height: 65vh;
+  max-width: 75vw;
+  object-fit: contain;
+  border: 14px solid #1a1c22;
+  padding: 24px;
+  background: #ffffff;
+  box-shadow:
+    0 30px 65px -15px rgba(0, 0, 0, 0.65),
+    0 15px 30px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 2;
+  /* Cinematic reflection */
+  -webkit-box-reflect: below 5px linear-gradient(transparent 55%, rgba(255, 255, 255, 0.18));
+}
+
+/* The Museum Placard */
+.gallery-item-info {
+  position: absolute;
+  bottom: 10%;
+  right: -10%;
+  background-image: linear-gradient(120deg, #fdfcf8 0%, #f4f3ed 100%);
+  border-left: 3px solid #1a1a1a;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  width: max-content;
+  min-width: 280px;
+  border-radius: 2px;
+  text-align: left;
+  opacity: 0.9;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-item-info {
+  opacity: 1;
+  transform: translate(5px, -5px);
+}
+
+.gallery-item-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.gallery-item-artist {
+  font-size: 0.95rem;
+  color: #555;
+  font-style: italic;
+  font-family: 'Outfit', sans-serif;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.gallery-item-price {
+  font-weight: 700;
+  color: #000;
+  font-size: 1.15rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body[dir="rtl"] .gallery-item-info {
+  border-left: none;
+  border-right: 3px solid #1a1a1a;
+  text-align: right;
+  right: auto;
+  left: -10%;
+}
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    gap: 10vw;
+    padding: 0 16vw;
+  }
+
+  .gallery-item-info {
+    right: 0;
+    bottom: 5%;
+    width: 90%;
+    min-width: auto;
+  }
+
+  body[dir="rtl"] .gallery-item-info {
+    left: 0;
+  }
+
+  .gallery-item-img {
+    max-height: 52vh;
+    border-width: 8px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    gap: 8vw;
+    padding: 0 8vw;
+  }
+
+  .gallery-item-img {
+    max-height: 48vh;
+    max-width: 84vw;
+    border-width: 6px;
+    padding: 8px;
+  }
+
+  .gallery-item-info {
+    padding: 0.85rem 1.2rem;
+    font-size: 0.9rem;
+    bottom: 3%;
+  }
+
+  .gallery-item-title {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .gallery-item-artist {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .gallery-item-price {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   NEW HOME SECTIONS (EXPANDED LAYOUT)
+   ========================================================================== */
+
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.scroll-indicator {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ==========================================================================
+   HANA BAHAA STYLE: A FRAME FOR EVERY HOUSE (MASTERPIECES)
+   ========================================================================== */
+.home-frame-section {
+  background: radial-gradient(circle at 50% 30%, #151720 0%, #0c0d12 70%, #08090c 100%);
+  color: #ffffff;
+  padding: clamp(4.5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4.5rem);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.frame-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.frame-left-content {
+  flex: 1;
+  max-width: 490px;
+  display: flex;
+  align-items: flex-start;
+  gap: 2.2rem;
+}
+
+.frame-section-title {
+  font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #ffffff;
+  white-space: normal;
+  letter-spacing: -0.01em;
+  flex: 0 0 46%;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.frame-section-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #a6abb8;
+  font-style: italic;
+  flex: 0 0 54%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.frame-section-desc p {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+body[dir="rtl"] .frame-section-title {
+  font-family: 'Cairo', sans-serif !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+body[dir="rtl"] .frame-section-desc {
+  font-family: 'Cairo', sans-serif !important;
+  font-style: normal;
+  font-size: 0.95rem;
+}
+
+/* Pre-reveal initial states for frames section scroll entrance */
+html.anime-active .home-frame-section:not(.frame-revealed) .frame-section-title {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+html.anime-active .home-frame-section:not(.frame-revealed) .frame-section-desc p {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+html.anime-active .home-frame-section:not(.frame-revealed) .frame-main-piece {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+html.anime-active .home-frame-section:not(.frame-revealed) .frame-sub-top {
+  opacity: 0;
+  transform: translateX(65px) translateY(50px) rotateY(20deg) rotateX(-8deg) scale(0.82);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+html.anime-active .home-frame-section:not(.frame-revealed) .frame-sub-bot {
+  opacity: 0;
+  transform: translateX(65px) translateY(60px) rotateY(-18deg) rotateX(10deg) scale(0.82);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Right Wall: 3-Piece Masterpieces Wall Composition (Non-clickable, local only) */
+.frame-right-wall {
+  flex: 1.25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.trio-wall-composition {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 550px;
+  width: 100%;
+  cursor: default !important;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  position: relative;
+  padding: 24px 18px;
+  /* Ambient gallery wall lighting pool behind the framed masterpieces */
+  background: radial-gradient(ellipse 90% 75% at 50% 50%, rgba(255, 238, 215, 0.05) 0%, rgba(255, 255, 255, 0.015) 45%, transparent 75%);
+  border-radius: 8px;
+}
+
+.frame-main-piece {
+  flex: 1.15;
+  height: 388px;
+  transform-style: preserve-3d;
+}
+
+.trio-sub-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform-style: preserve-3d;
+}
+
+.frame-sub-top {
+  height: 186px;
+  transform-style: preserve-3d;
+}
+
+.frame-sub-bot {
+  height: 186px;
+  transform-style: preserve-3d;
+}
+
+/* Authentic Handcrafted Wooden Picture Frames with Real 3D Wall Relief (بروز حقيقي معلق على حائط) */
+.framed-piece {
+  display: block;
+  background: #fbf9f4;
+  /* Museum Archival Ivory Cotton Rag Matting */
+  padding: 9px;
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: default !important;
+  user-select: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  /* REAL 3D WALL PROTRUSION & MULTI-LAYER CAST SHADOWS (بروز وظلال تعليق حقيقية على الحائط) */
+  box-shadow:
+    /* 1. Sharp ambient contact shadow right under the frame edge */
+    0 4px 8px rgba(0, 0, 0, 0.65),
+    /* 2. Deep directional cast shadow projecting down onto the wall */
+    0 24px 44px -6px rgba(0, 0, 0, 0.88),
+    /* 3. Soft diffuse atmospheric wall shadow */
+    0 42px 75px -10px rgba(0, 0, 0, 0.96),
+    /* 4. Top/left light catch on the outer wooden molding lip */
+    inset 1px 1px 1px rgba(255, 240, 215, 0.38),
+    /* 5. Bottom/right deep bevel shadow on outer molding */
+    inset -2px -2px 3px rgba(0, 0, 0, 0.8),
+    /* 6. Inner wooden rebate shadow cast onto the ivory matting */
+    inset 0 0 0 1px rgba(35, 20, 10, 0.5);
+
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framed-piece:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.7),
+    0 32px 58px -6px rgba(0, 0, 0, 0.92),
+    0 54px 90px -10px rgba(0, 0, 0, 0.98),
+    inset 1px 1px 2px rgba(255, 245, 225, 0.48),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.85),
+    inset 0 0 0 1px rgba(35, 20, 10, 0.6);
+}
+
+/* Subtle Museum Art Glass Reflection */
+.framed-piece::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.03) 28%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.14) 100%);
+  pointer-events: none;
+  z-index: 3;
+  border-radius: inherit;
+}
+
+/* The Canvas Artwork nestled inside the Beveled Matting Window */
+.framed-piece img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+  border-radius: 1px;
+  /* 3D 45° Beveled Passe-partout Cut Window & Canvas Inset Depth */
+  box-shadow:
+    /* 1. Fine cut-line along the matting window edge */
+    0 0 0 1px rgba(0, 0, 0, 0.28),
+    /* 2. Cast shadow from matting thickness onto the canvas surface */
+    inset 0 2px 6px rgba(0, 0, 0, 0.5),
+    /* 3. Subtle outer depth from matting */
+    0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   AUTHENTIC HAND-FINISHED WOOD TYPES (100% NATURAL WOOD GRAIN - NO FAKE GOLD)
+   ========================================================================== */
+
+/* 1. Deep Italian Walnut Molding (خشب جوز طبيعي فاخر - للوحة الرئيسية) */
+.frame-walnut,
+.frame-oak {
+  border: 15px solid #3c2214;
+  border-image: linear-gradient(135deg,
+      #5f381f 0%,
+      #4a2916 20%,
+      #361d0f 40%,
+      #55321c 65%,
+      #2c160a 85%,
+      #422413 100%) 15;
+  outline: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* 2. Dark Aged Espresso Oak (خشب بلوط داكن معتق - للوحة العلوية) */
+.frame-dark-wood {
+  border: 12px solid #231309;
+  border-image: linear-gradient(135deg,
+      #3a2012 0%,
+      #28150a 25%,
+      #1b0c05 50%,
+      #2f1a0e 75%,
+      #120803 100%) 12;
+  outline: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* 3. Natural Warm Teak / Mahogany (خشب تيك وماهوجني دافئ طبيعي - بديل الدهبي القديم تماماً) */
+.frame-warm-wood,
+.frame-gold {
+  border: 12px solid #4a2b16;
+  border-image: linear-gradient(135deg,
+      #704122 0%,
+      #5c341a 25%,
+      #422310 50%,
+      #63381b 75%,
+      #33190a 100%) 12;
+  outline: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.frame-black {
+  border: 12px solid #16171a;
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.frame-white {
+  border: 10px solid #eceae3;
+  outline: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Made with Care Section */
+.frame-care-block {
+  text-align: center;
+  max-width: 620px;
+  margin: 5rem auto 0 auto;
+  padding-top: 3.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.care-heart-icon {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+
+.care-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.care-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #9da3b2;
+}
+
+body[dir="rtl"] .care-title,
+body[dir="rtl"] .care-desc {
+  font-family: 'Cairo', sans-serif !important;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .home-frame-section {
+    padding: 3.5rem 1.25rem 3rem 1.25rem;
+  }
+
+  .frame-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .frame-left-content {
+    flex-direction: column;
+    align-items: center;
+    max-width: 650px;
+    gap: 1.25rem;
+  }
+
+  .frame-section-title {
+    flex: none;
+    max-width: 100%;
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    text-align: center;
+  }
+
+  .frame-section-desc {
+    flex: none;
+    max-width: 100%;
+    text-align: center;
+    font-size: 0.92rem;
+  }
+
+  .trio-wall-composition {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-frame-section {
+    padding: 3rem 1rem 2.5rem 1rem;
+  }
+
+  .trio-wall-composition {
+    gap: 10px;
+    max-width: 330px;
+  }
+
+  .frame-main-piece {
+    height: 230px;
+    border-width: 6px;
+    padding: 5px;
+  }
+
+  .trio-sub-stack {
+    gap: 10px;
+  }
+
+  .frame-sub-top,
+  .frame-sub-bot {
+    height: 110px;
+    border-width: 5px;
+    padding: 4px;
+  }
+
+  .frame-care-block {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+
+  .care-title {
+    font-size: 1.5rem;
+  }
+
+  .care-desc {
+    font-size: 0.88rem;
+  }
+}
+
+/* Infinite Marquee Section */
+.home-marquee-section {
+  background: #050608;
+  padding: 3.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  direction: ltr !important;
+  /* Ensure consistent flow in both AR and EN */
+  position: relative;
+}
+
+.home-marquee-section::before,
+.home-marquee-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.home-marquee-section::before {
+  left: 0;
+  background: linear-gradient(to right, #050608 0%, transparent 100%);
+}
+
+.home-marquee-section::after {
+  right: 0;
+  background: linear-gradient(to left, #050608 0%, transparent 100%);
+}
+
+.marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 2rem;
+  width: 100%;
+  direction: ltr !important;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2rem;
+  min-width: 100%;
+  animation: scrollInfinite 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track img {
+  height: 240px;
+  width: auto;
+  max-width: 380px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  filter: grayscale(25%) brightness(0.88);
+  transition: filter 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.marquee-track img:hover {
+  filter: grayscale(0%) brightness(1.08);
+  transform: scale(1.04);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.12);
+  z-index: 10;
+}
+
+@keyframes scrollInfinite {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+@media (max-width: 768px) {
+  .home-marquee-section {
+    padding: 2.5rem 0;
+  }
+
+  .marquee-track img {
+    height: 170px;
+  }
+
+  .home-marquee-section::before,
+  .home-marquee-section::after {
+    width: 40px;
+  }
+}
+
+/* Artist Snippet */
+.home-artist-snippet {
+  background: #0a0b0d;
+  padding: 6rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.snippet-content {
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.snippet-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.snippet-bio {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #a0a0a0;
+  font-weight: 300;
+}
+
+body[dir="rtl"] .snippet-bio {
+  font-family: 'Cairo', sans-serif;
+}
+
+.snippet-link {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 4px;
+  transition: border-color 0.3s ease;
+}
+
+body[dir="rtl"] .snippet-link {
+  font-family: 'Cairo', sans-serif;
+}
+
+.snippet-link:hover {
+  border-color: #fff;
+}
+
+/* ==========================================================================
+   LUXURY FOOTER
+   ========================================================================== */
+.site-footer {
+  background: #020304 !important;
+  background-color: #020304 !important;
+  padding: 4rem 2rem calc(3.5rem + env(safe-area-inset-bottom, 0px)) !important;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative;
+}
+
+body[dir="rtl"] .site-footer {
+  font-family: 'Cairo', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.footer-brand h3 {
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-social a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  margin-top: 3.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+  padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+}
+
+/* Hide duplicate brand sections since logo is now in the top header */
+.home-brand,
+.contact-brand,
+.about-brand,
+.gallery-header-logo {
+  display: none !important;
+}
+
+@media screen and (max-width: 900px) {
+  .site-header {
+    padding: 0.65rem 1.25rem;
+  }
+
+  .site-header .header-inner {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-nav-left {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 1.15rem;
+    padding-top: 0.45rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .header-center {
+    order: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-brand {
+    gap: 0.6rem;
+  }
+
+  .brand-signature {
+    font-size: 2.15rem !important;
+    transform: translateY(1.5px);
+  }
+
+  .header-brand-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header-right {
+    order: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .site-header {
+    padding: 0.5rem 0.85rem;
+  }
+
+  .site-header .header-inner {
+    gap: 0.5rem;
+  }
+
+  .header-nav-left {
+    gap: 0.75rem;
+    padding-top: 0.35rem;
+  }
+
+  .header-nav-left a {
+    font-size: 0.82rem;
+  }
+
+  .header-brand {
+    gap: 0.48rem;
+  }
+
+  .brand-signature {
+    font-size: 1.88rem !important;
+    transform: translateY(1px);
+  }
+
+  .header-brand-logo {
+    width: 33px;
+    height: 33px;
+  }
+
+  .header-right .lang-toggle-btn {
+    padding: 0.28rem 0.6rem !important;
+    font-size: 0.74rem !important;
+  }
+}
+
+/* ==========================================================================
+   ANIME.JS V4 - LUXURY HOME MOTION ENHANCEMENTS
+   ========================================================================== */
+
+.care-heart-icon i {
+  display: inline-block;
+  will-change: transform, color, filter;
+  transition: transform 0.3s ease;
+}
+
+/* ==========================================================================
+   FEATURE 1: CURATOR'S GALLERY SPOTLIGHT (WARM AMBIENT GLOW)
+   ========================================================================== */
+.curator-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  margin-left: -300px;
+  margin-top: -300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(245, 220, 160, 0.07) 0%, rgba(225, 190, 120, 0.025) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 998;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.curator-spotlight.active {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   FEATURE 2: 3D GALLERY DECK FAN-OUT
+   ========================================================================== */
+.trio-wall-composition {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.framed-piece {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* ==========================================================================
+   FEATURE 3: LIQUID GOLD LEAF SHIMMER EFFECT
+   ========================================================================== */
+@keyframes goldLeafShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.home-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 15%, rgba(255, 240, 190, 0.35) 45%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 240, 190, 0.35) 55%, transparent 85%);
+  background-size: 200% 100%;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.home-cta:hover::before {
+  opacity: 1;
+  animation: goldLeafShimmer 1.8s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   FEATURE 4: ARTIST'S BRUSHSTROKE SCROLL INDICATOR
+   ========================================================================== */
+.brush-scroll-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  z-index: 10001;
+  pointer-events: none;
+}
+
+.brush-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c69335, #e5c158, #fae29c, #e5c158);
+  box-shadow: 0 0 10px rgba(229, 193, 88, 0.6);
+  position: relative;
+  border-radius: 0 2px 2px 0;
+  will-change: width;
+}
+
+.brush-tip {
+  position: absolute;
+  right: -4px;
+  top: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fae29c;
+  box-shadow: 0 0 8px #fae29c, 0 0 14px rgba(229, 193, 88, 0.8);
+}
+
+
+
+
+
+
+/* ==========================================================================
+   NADINE BAGHDADI - ARTIST'S ATELIER PALETTE (AUTHENTIC STUDIO AESTHETIC)
+   ========================================================================== */
+
+/* Background Gallery Watermark - Elegant Artist Signature Calligraphy */
+.gallery-watermark {
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Alex Brush', 'Great Vibes', cursive;
+  font-size: clamp(5rem, 16vw, 16rem);
+  color: #fae29c;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+  user-select: none;
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+body[dir="rtl"] .gallery-watermark {
+  font-family: 'Cairo', serif;
+  font-weight: 700;
+  font-size: clamp(4rem, 13vw, 13rem);
+  opacity: 0.035;
+}
+
+/* The Atelier Artist Dock */
+.gallery-curator-dock {
+  position: fixed;
+  top: 4.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 95%;
+  max-width: 980px;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.curator-dock-inner {
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Minimalist Quiet Luxury Categories Pill Dock (هدوء ورقي خالص بدون أي دهبي) */
+.curator-dock-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 4px 6px;
+  background: rgba(18, 18, 22, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  box-shadow:
+    0 16px 36px -8px rgba(0, 0, 0, 0.65),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  overflow: visible;
+  max-width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.curator-dock-glass::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sliding Silk Pill Indicator */
+.curator-dock-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, width;
+}
+
+/* Category Tab - Clean Understated Elegance */
+.curator-tab {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.44rem 1.05rem;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.25s ease, background 0.25s ease;
+  user-select: none;
+}
+
+body[dir="rtl"] .curator-tab {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0;
+  gap: 0.55rem;
+}
+
+.tab-icon {
+  font-size: 0.78rem;
+  opacity: 0.65;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.curator-tab:hover {
+  color: #ffffff;
+}
+
+.curator-tab:hover .tab-icon {
+  opacity: 0.95;
+  transform: scale(1.1);
+}
+
+.curator-tab.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.curator-tab.active .tab-icon {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+/* Gallery Items - smooth 2D transitions */
+.gallery-item {
+  will-change: transform, opacity;
+  position: relative;
+  transition: box-shadow 0.5s ease;
+}
+
+/* Enhanced Painting Shadows (Clean Monochrome Exhibition Shadow) */
+.gallery-item-img {
+  box-shadow:
+    0 25px 60px -12px rgba(0, 0, 0, 0.88),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+/* Category Badge in Artwork Card - Quiet Luxury Museum Curation Label */
+.gallery-item-category-tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  color: #68635b !important;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin-bottom: 0.4rem;
+  box-shadow: none !important;
+}
+
+body[dir="rtl"] .gallery-item-category-tag {
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0;
+  font-size: 0.72rem;
+  align-self: flex-start;
+}
+
+/* Filtering animation states */
+.gallery-item.is-filtered-out {
+  display: none !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .gallery-curator-dock {
+    top: 4.4rem;
+    width: 96%;
+  }
+
+  .curator-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .curator-status-strip {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-curator-dock {
+    top: 4.2rem;
+  }
+
+  .curator-dock-glass {
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .curator-tab {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.76rem;
+    gap: 0.4rem;
+  }
+
+  .paint-dab {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+
+/* ==========================================================================
+   THE GRAND ATELIER CURTAIN REVEAL & LIVE BRUSHSTROKE HEADLINE
+   ========================================================================== */
+
+/* Live Brushstroke Underline beneath Headline */
+.headline-brushstroke-wrapper {
+  display: block;
+  width: min(90%, 360px);
+  margin: 0.85rem auto 0 auto;
+  height: 26px;
+  position: relative;
+}
+
+.hero-brushstroke-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(250, 226, 156, 0.55));
+}
+
+/* ==========================================================================
+   GALLERY FILTER VISIBILITY RULES (INSTANT MOBILE & DESKTOP FILTERING)
+   ========================================================================== */
+
+.gallery-item.filtered-out,
+.gallery-item.is-filtered-out,
+.gallery-page .gallery-item.filtered-out,
+.gallery-page .gallery-item.is-filtered-out {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+
+/* ==========================================================================
+   MOBILE PERFECTION FOR GALLERY (NO OVERLAP, NO CUTOFF, NO SCROLLBAR)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* 1. Viewport & Body: Prevent unwanted page jumps */
+  html.gallery-page,
+  body.gallery-page {
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 2. Compact Mobile Header on Gallery Page */
+  .gallery-page .site-header {
+    position: relative !important;
+    padding: 0.5rem 1rem 0.35rem 1rem !important;
+    background: #121212 !important;
+    z-index: 100;
+  }
+
+  .gallery-page .site-header .header-inner {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.3rem !important;
+  }
+
+  .gallery-page .header-nav-left {
+    order: 3 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 1.2rem !important;
+    padding-top: 0.25rem !important;
+    margin-top: 0.1rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .gallery-page .header-nav-left a {
+    font-size: 0.82rem !important;
+  }
+
+  /* 3. Curator Category Dock: Sits Naturally Below Navbar */
+  .gallery-curator-dock {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0.3rem auto 0.2rem auto !important;
+    padding: 0 0.5rem !important;
+    z-index: 90 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .curator-dock-inner {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    overflow: hidden !important;
+    position: relative !important;
+    mask-image: linear-gradient(to right, transparent, black 16px, black calc(100% - 16px), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 16px, black calc(100% - 16px), transparent);
+  }
+
+  .curator-dock-glass {
+    width: auto !important;
+    min-width: 100% !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: smooth !important;
+    scrollbar-width: none !important;
+    padding: 4px 8px !important;
+    gap: 0.35rem !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    background: rgba(18, 18, 22, 0.94) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65) !important;
+  }
+
+  .curator-dock-glass::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .curator-dock-indicator {
+    display: block !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .curator-tab {
+    flex: 0 0 auto !important;
+    padding: 0.44rem 0.92rem !important;
+    min-height: 38px !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    gap: 0.42rem !important;
+    border-radius: 999px !important;
+    white-space: nowrap !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    transition: all 0.25s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    touch-action: manipulation !important;
+  }
+
+  .curator-tab.active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.16) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+  }
+
+  .curator-tab:active {
+    transform: scale(0.95) !important;
+  }
+
+  .tab-icon {
+    font-size: 0.76rem !important;
+  }
+
+  /* 4. Gallery Container: Fills exact remaining height */
+  .gallery-page .gallery-container {
+    height: calc(100dvh - 145px) !important;
+    min-height: unset !important;
+    width: 100vw !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .gallery-page .gallery-content-wrapper {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .gallery-page .gallery-grid {
+    height: 100% !important;
+    width: 100vw !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 0 8vw !important;
+    gap: 7vw !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* 5. Artwork Cards on Mobile: Vertical Unified Card */
+  .gallery-page .gallery-item:not(.filtered-out):not(.is-filtered-out) {
+    scroll-snap-align: center !important;
+    scroll-snap-stop: normal !important;
+    flex: 0 0 82vw !important;
+    width: 82vw !important;
+    max-width: 350px !important;
+    height: auto !important;
+    max-height: 94% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+  }
+
+  .gallery-page .gallery-item.filtered-out,
+  .gallery-page .gallery-item.is-filtered-out {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    flex: 0 0 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .gallery-page .gallery-item-img {
+    max-height: 38vh !important;
+    max-width: 100% !important;
+    width: auto !important;
+    object-fit: contain !important;
+    border: 6px solid #1a1c22 !important;
+    padding: 8px !important;
+    -webkit-box-reflect: none !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75) !important;
+  }
+
+  /* Placard / Info Box: Sits Directly and Securely Under the Painting */
+  .gallery-page .gallery-item-info {
+    position: static !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    min-width: unset !important;
+    margin-top: 0.6rem !important;
+    padding: 0.65rem 0.95rem !important;
+    border-radius: 4px !important;
+    background: rgba(250, 248, 242, 0.95) !important;
+    border-left: 3px solid #1a1a1a !important;
+    border-right: none !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  body[dir="rtl"].gallery-page .gallery-item-info {
+    border-left: none !important;
+    border-right: 3px solid #1a1a1a !important;
+  }
+
+  .gallery-page .gallery-item-category-tag {
+    display: inline-block !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em !important;
+    padding: 0 !important;
+    margin-bottom: 0.25rem !important;
+    background: transparent !important;
+    border: none !important;
+    color: #706b63 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  .gallery-page .gallery-item-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.15rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .gallery-page .gallery-item-artist {
+    font-size: 0.76rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .gallery-page .gallery-item-price {
+    font-size: 0.95rem !important;
+  }
+
+  /* Atmospheric Watermark on Mobile */
+  .gallery-watermark {
+    font-size: clamp(3rem, 11vw, 5.5rem) !important;
+    top: 50% !important;
+    opacity: 0.03 !important;
+  }
+
+  /* Home Page Adjustments: Mobile Headline Typography & Alignment */
+  .home-headline {
+    font-size: clamp(1.85rem, 6.2vw, 2.5rem) !important;
+    line-height: 1.22 !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    text-wrap: balance !important;
+    max-width: 92vw !important;
+  }
+
+  .home-headline .brush-line {
+    display: block !important;
+    white-space: nowrap !important;
+  }
+
+  .home-headline .brush-word {
+    display: inline-block !important;
+    white-space: nowrap !important;
+  }
+
+  body[dir="rtl"] .home-headline {
+    font-size: clamp(1.75rem, 5.8vw, 2.35rem) !important;
+  }
+
+  .headline-brushstroke-wrapper {
+    width: min(85%, 280px);
+    height: 22px;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .gallery-page .gallery-item {
+    flex: 0 0 86vw !important;
+    width: 86vw !important;
+  }
+
+  .gallery-page .gallery-item-img {
+    max-height: 34vh !important;
+  }
+
+  .gallery-page .gallery-item-info {
+    padding: 0.55rem 0.75rem !important;
+  }
+}

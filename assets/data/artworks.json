@@ -1,0 +1,57 @@
+[
+  {
+    "id": "art-1",
+    "title": "",
+    "artist": "",
+    "price": "",
+    "category": "art",
+    "image": "assets/images/artworks/art-1.jpg",
+    "fallbackImage": "",
+    "link": "#",
+    "ambientColor": "#4a3a5c"
+  },
+  {
+    "id": "art-2",
+    "title": "",
+    "artist": "",
+    "price": "",
+    "category": "art",
+    "image": "assets/images/artworks/art-2.jpg",
+    "fallbackImage": "",
+    "link": "#",
+    "ambientColor": "#5a4e42"
+  },
+  {
+    "id": "art-3",
+    "title": "",
+    "artist": "",
+    "price": "",
+    "category": "art",
+    "image": "assets/images/artworks/art-3.jpg",
+    "fallbackImage": "",
+    "link": "#",
+    "ambientColor": "#4d4a44"
+  },
+  {
+    "id": "art-4",
+    "title": "",
+    "artist": "",
+    "price": "",
+    "category": "art",
+    "image": "assets/images/artworks/art-4.jpg",
+    "fallbackImage": "",
+    "link": "#",
+    "ambientColor": "#3f5368"
+  },
+  {
+    "id": "art-5",
+    "title": "",
+    "artist": "",
+    "price": "",
+    "category": "art",
+    "image": "assets/images/artworks/art-5.jpg",
+    "fallbackImage": "",
+    "link": "#",
+    "ambientColor": "#6b5d52"
+  }
+]
